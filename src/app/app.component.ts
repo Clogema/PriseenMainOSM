@@ -9,4 +9,3 @@ import * as L from "leaflet";
 export class AppComponent implements OnInit {
   ngOnInit() {}
 }
-// layers : http://leafletjs.com/examples/layers-control/
