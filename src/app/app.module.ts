@@ -21,7 +21,7 @@ const appRoutes: Routes = [
     QuickStartComponent,
     LoginFormComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
   providers: [],
   bootstrap: [AppComponent]
 })
