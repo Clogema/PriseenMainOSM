@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { LayerComponent } from "./layer/layer.component";
 import { QuickStartComponent } from "./quick-start/quick-start.component";
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
@@ -13,7 +14,11 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, LayerComponent, QuickStartComponent],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
