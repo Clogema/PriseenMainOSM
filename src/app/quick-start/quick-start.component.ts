@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as L from "leaflet";
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-quick-start",
@@ -14,16 +14,15 @@ export class QuickStartComponent implements OnInit {
   coordLycee = L.latLng(43.1163689, 5.9371478);
   coordGare = L.latLng(43.1283184, 5.9272719);
 
-  myMap:any;
+  myMap: any;
 
-  crassiers:any;
+  crassiers: any;
 
-  constructor(private http:HttpClient){
-  }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom. Laissez "frugalmap" dans la fonction map
-    this.myMap = L.map("frugalmap").setView([43.205068, 5.513651], 15)
+    this.myMap = L.map("frugalmap").setView([43.205068, 5.513651], 15);
 
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
       attribution: "My Map"
@@ -35,7 +34,7 @@ export class QuickStartComponent implements OnInit {
         "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
     });
 
-   /*  const marker = L.marker(this.coordEcole, {
+    /*  const marker = L.marker(this.coordEcole, {
       icon: iconMarker
     }).addTo(this.myMap);
     marker.bindPopup("<b>Yo!</b><br>C'est ma maison");
@@ -57,7 +56,7 @@ export class QuickStartComponent implements OnInit {
     ]).addTo(this.myMap); */
 
     // gestion événement : au click
-    
+
     /* const popup = new L.Popup();
     
     function onMapClick(e) {
@@ -73,12 +72,12 @@ export class QuickStartComponent implements OnInit {
     this.getCrassiers();
   }
 
-  public getCrassiers(){
+  public getCrassiers() {
     this.http.get<any>("/assets/data.json").subscribe(result => {
       let crassiers = result.crassiers;
       this.crassiers = crassiers;
 
-      for (let crassier of crassiers){
+      for (let crassier of crassiers) {
         // ajouter un marker pour chaque crassier
         const iconMarker = L.icon({
           iconUrl:
@@ -94,31 +93,31 @@ export class QuickStartComponent implements OnInit {
           color: "red",
           fillColor: "red",
           fillOpacity: 0.5,
-          radius: (crassier.radius ? crassier.radius : 300)
+          radius: crassier.radius ? crassier.radius : 300
         }).addTo(this.myMap);
         circle.bindTooltip(crassier.nom);
       }
     });
   }
 
-  public debutConduite(){
-    this.myMap.setView(new L.LatLng(43.452670, 5.461630), 11);
+  public debutConduite() {
+    this.myMap.setView(new L.LatLng(43.45267, 5.46163), 11);
   }
 
   public finConduite() {
     this.myMap.setView(new L.LatLng(43.192163, 5.51527), 11);
   }
 
-  public centerOn(crassier:any){
+  public centerOn(crassier: any) {
     this.myMap.setView(new L.LatLng(crassier.pos[0], crassier.pos[1]), 12);
   }
 
-  public getConduite(){
+  public getConduite() {
     this.http.get<any>("/assets/data.json").subscribe(result => {
       let latlngs = result.conduite;
 
       // ajouter un polygone
-      const conduite = L.polyline(latlngs, { "color": "red" }).addTo(this.myMap);
+      const conduite = L.polyline(latlngs, { color: "red" }).addTo(this.myMap);
       conduite.bindTooltip("Conduite Alteo");
     });
   }
