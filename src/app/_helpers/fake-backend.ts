@@ -14,10 +14,10 @@ export function fakeBackendFactory(
   // configure fake backend
   backend.connections.subscribe((connection: MockConnection) => {
     const testUser = {
-      username: "test",
-      password: "test",
-      firstName: "Test",
-      lastName: "User"
+      username: "admin",
+      password: "admin",
+      firstName: "Admin",
+      lastName: "Admin"
     };
 
     // wrap in timeout to simulate server api call
