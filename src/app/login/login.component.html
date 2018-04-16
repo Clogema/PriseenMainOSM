@@ -1,27 +1,8 @@
-<form [formGroup]="userForm" (submit)="saveUser()">
-  <div class="form-group">
-    <label for="firstname">Prénom : </label>
-    <input class="form-control" formControlName="firstname" id="firstname" />
-    <app-control-message [control]="userForm.controls.firstname"></app-control-message>
-  </div>
-
-  <div class="form-group">
-    <label for="lastname">Nom : </label>
-    <input class="form-control" formControlName="lastname" id="lastname" />
-    <app-control-message [control]="userForm.controls.lastname"></app-control-message>
-  </div>
-
+<form [formGroup]="userForm" (submit)="connectUser()">
   <div class="form-group">
     <label for="username">Pseudo : </label>
     <input class="form-control" formControlName="username" id="username" />
     <app-control-message [control]="userForm.controls.username"></app-control-message>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email : </label>
-    <input class="form-control" formControlName="email" id="email" />
-    <app-control-message [control]="userForm.controls.email">
-    </app-control-message>
   </div>
 
   <div class="form-group">

@@ -21,14 +21,20 @@
           <a href="/layer">Layer</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul *ngIf="!connect" class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/signup">Sign Up</a>
+        </li>
         <li>
           <a href="/login">Log In</a>
         </li>
+      </ul>
+      <ul *ngIf="connect" class="nav navbar-nav navbar-right">
         <li>
-          <a>Log Out</a>
+          <a>Bonjour Lisa</a>
         </li>
       </ul>
+
     </div>
   </nav>
 

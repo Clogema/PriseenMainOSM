@@ -1,34 +1,34 @@
 import { Component } from "@angular/core";
-import { Router, Routes } from "@angular/router";
 
 import { FormBuilder, Validators } from "@angular/forms";
 import { ControlMessageComponent } from "../control-message/control-message.component";
 import { ValidationService } from "./../validation.service";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: "app-signup",
+  templateUrl: "./signup.component.html",
+  styleUrls: ["./signup.component.css"]
 })
-export class LoginComponent {
+export class SignupComponent {
   userForm: any;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder) {
     this.userForm = this.formBuilder.group({
+      firstname: ["", Validators.required],
+      lastname: ["", Validators.required],
       username: ["", Validators.required],
+      email: ["", [Validators.required, ValidationService.emailValidator]],
       password: ["", [Validators.required, ValidationService.passwordValidator]]
     });
   }
 
-  connectUser() {
+  saveUser() {
     if (this.userForm.dirty && this.userForm.valid) {
-      if (
-        this.userForm.value.username == "Lisa" &&
-        this.userForm.value.password == "pouet5"
-      ) {
-        alert("Lisa est connectée");
-        this.router.navigate(["/quick", { connect: true }]);
-      }
+      alert(
+        `Name : ${this.userForm.value.firstname} Email: ${
+          this.userForm.value.email
+        }`
+      );
     }
   }
 }

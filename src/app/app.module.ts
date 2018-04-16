@@ -11,11 +11,13 @@ import { QuickStartComponent } from "./quick-start/quick-start.component";
 import { MockBackend } from "@angular/http/testing";
 import { ControlMessageComponent } from "./control-message/control-message.component";
 import { ValidationService } from "./validation.service";
+import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
   { path: "quick", component: QuickStartComponent },
+  { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
   { path: "**", redirectTo: "" }
 ];
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
     LayerComponent,
     QuickStartComponent,
     ControlMessageComponent,
+    SignupComponent,
     LoginComponent
   ],
   imports: [

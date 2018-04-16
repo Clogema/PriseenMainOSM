@@ -7,5 +7,11 @@ import * as L from "leaflet";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {}
+  connect = false;
+
+  ngOnInit() {
+    this.connect = this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        this.connect = params.get('connect');}
+  }
 }
