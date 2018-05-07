@@ -4,10 +4,11 @@
     <div>
         Users from secure api end point:
         <ul>
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+            <li *ngFor="let user of users">{{user.name}} {{user.email}}</li>
         </ul>
     </div>
     <p>
+        <a [routerLink]="['/editorial']">Editorial</a>
         <a [routerLink]="['/login']">Logout</a>
     </p>
 </div>

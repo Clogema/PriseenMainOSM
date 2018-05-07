@@ -24,7 +24,7 @@ export function fakeBackendFactory(
     setTimeout(() => {
       // fake authenticate api end point
       if (
-        connection.request.url.endsWith("/api/authenticate") &&
+        connection.request.url.endsWith("/access_token") &&
         connection.request.method === RequestMethod.Post
       ) {
         // get parameters from post request

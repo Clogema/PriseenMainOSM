@@ -12,17 +12,19 @@ import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./_guards";
 import { AuthenticationService, UserService } from "./_services";
-import {
-  fakeBackendFactory,
-  fakeBackendProvider
-} from "./_helpers/fake-backend";
 import { MockBackend } from "@angular/http/testing";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth/token.interceptor';
+import { EditorialComponent } from './editorial/editorial.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
   { path: "quick", component: QuickStartComponent },
   { path: "login", component: LoginComponent },
+  { path: "logout", component: LogoutComponent },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "editorial", component: EditorialComponent, canActivate: [AuthGuard] },
   { path: "**", redirectTo: "" }
 ];
 
@@ -32,7 +34,10 @@ const appRoutes: Routes = [
     LayerComponent,
     QuickStartComponent,
     LoginComponent,
-    HomeComponent
+    LogoutComponent,
+    HomeComponent,
+    EditorialComponent,
+    LogoutComponent
   ],
   imports: [
     FormsModule,
@@ -45,9 +50,13 @@ const appRoutes: Routes = [
     AuthGuard,
     AuthenticationService,
     UserService, // providers used to create fake backend
-    fakeBackendProvider,
     MockBackend,
-    BaseRequestOptions
+    BaseRequestOptions,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

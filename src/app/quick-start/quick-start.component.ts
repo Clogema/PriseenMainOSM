@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as L from "leaflet";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-quick-start",
