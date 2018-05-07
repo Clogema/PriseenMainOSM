@@ -33,6 +33,9 @@
         <li>
           <a>Bonjour Lisa</a>
         </li>
+        <li>
+          <a href="/logout">Déconnexion</a>
+        </li>
       </ul>
 
     </div>
@@ -42,6 +45,13 @@
     <h1>Prise en Main Open Street Map</h1>
     <p>Projet Technique M1 - ZEA</p>
   </div>
+
+  <form action='http://www.ptp-images.com/api.php' name='up' method='POST' enctype='multipart/form-data'>
+    <input type='file' size='30' name='fichier' />
+    <input type='hidden' name='url_ok' value='http://monsite/envoi_ok.html' />
+    <input type='hidden' name='url_erreur' value='http://monsite/envoi_erreur.html' />
+    <input type='submit' value='Envoyer' />
+  </form>
 
   <router-outlet></router-outlet>
 

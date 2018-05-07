@@ -9,9 +9,5 @@ import * as L from "leaflet";
 export class AppComponent implements OnInit {
   connect = false;
 
-  ngOnInit() {
-    this.connect = this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        this.connect = params.get('connect');}
-  }
+  ngOnInit() {}
 }
