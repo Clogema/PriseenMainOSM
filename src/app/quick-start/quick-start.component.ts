@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output } from "@angular/core";
 import * as L from "leaflet";
 import {
   HttpClient,
@@ -17,9 +17,11 @@ export class QuickStartComponent implements OnInit {
   crassiersLayer: any;
   conduiteLayer: any;
 
-  testimonyOnMap: any;
-  crassiersOnMap: any;
-  conduiteOnMap: any;
+  test = true;
+
+  testimonyOnMap = true;
+  crassiersOnMap = true;
+  conduiteOnMap = true;
 
   crassiers: any;
   testimony: any;
@@ -27,6 +29,7 @@ export class QuickStartComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    console.log(this.testimonyOnMap);
     this.testimonyLayer = L.layerGroup();
     this.crassiersLayer = L.layerGroup();
     this.conduiteLayer = L.layerGroup();
@@ -35,11 +38,8 @@ export class QuickStartComponent implements OnInit {
     this.getConduite();
     this.getCrassiers();
 
-    // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom. Laissez "frugalmap" dans la fonction map
-    // const myMap = L.map("frugalmap").setView([43.205068, 5.513651], 11);
-
     this.myMap = L.map("frugalmap", {
-      center: [43.205068, 5.513651],
+      center: [43.45267, 5.46163],
       zoom: 11,
       layers: [this.testimonyLayer, this.crassiersLayer, this.conduiteLayer]
     });
@@ -58,9 +58,14 @@ export class QuickStartComponent implements OnInit {
 
     L.control.layers(baseMaps, overlayMaps).addTo(this.myMap);
 
-    this.testimonyOnMap = this.myMap.hasLayer(this.testimonyLayer);
-    this.crassiersOnMap = this.myMap.hasLayer(this.crassiersLayer);
-    this.conduiteOnMap = this.myMap.hasLayer(this.conduiteLayer);
+    this.myMap.on("overlayadd", e => {
+      this.onOverlayAdd(e);
+    });
+    this.myMap.on("overlayremove", e => {
+      this.onOverlayRemove(e);
+    });
+
+    // console.log(this.testimonyOnMap);
   }
 
   public getTestimony() {
@@ -149,6 +154,38 @@ export class QuickStartComponent implements OnInit {
       );
       conduite.bindTooltip("Conduite Alteo");
     });
+  }
+
+  public addLayer(name) {
+    if (name === "Testimony") {
+      this.testimonyOnMap = true;
+    }
+    if (name === "Crassiers") {
+      this.crassiersOnMap = true;
+    }
+    if (name === "Conduite") {
+      this.conduiteOnMap = true;
+    }
+  }
+
+  public removeLayer(name) {
+    if (name === "Testimony") {
+      this.testimonyOnMap = false;
+    }
+    if (name === "Crassiers") {
+      this.crassiersOnMap = false;
+    }
+    if (name === "Conduite") {
+      this.conduiteOnMap = false;
+    }
+  }
+
+  public onOverlayAdd(e) {
+    this.addLayer(e.name);
+  }
+
+  public onOverlayRemove(e) {
+    this.removeLayer(e.name);
   }
 }
 
