@@ -7,5 +7,9 @@ import * as L from "leaflet";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {}
+  currentUser: any = null;
+
+  ngOnInit() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  }
 }
