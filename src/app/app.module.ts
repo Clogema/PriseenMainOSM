@@ -17,12 +17,14 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./auth/token.interceptor";
 import { EditorialComponent } from "./editorial/editorial.component";
 import { LogoutComponent } from "./logout/logout.component";
+import { SignupComponent } from "./signup/signup.component";
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
   { path: "quick", component: QuickStartComponent },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
+  { path: "signup", component: SignupComponent },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: "editorial",
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     LogoutComponent,
     HomeComponent,
     EditorialComponent,
-    LogoutComponent
+    LogoutComponent,
+    SignupComponent
   ],
   imports: [
     FormsModule,

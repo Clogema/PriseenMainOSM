@@ -1,18 +1,27 @@
 <div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8">
+  <div class="col-sm-10">
     <div id="frugalmap">
     </div>
   </div>
   <div class="col-sm-2">
-    <h3>Crassiers</h3>
-    <ul>
-      <li *ngFor="let crassier of crassiers" (click)="centerOn(crassier)">{{ crassier.nom }}</li>
-    </ul>
-    <h3>Divers</h3> 
-    <ul>
-      <li (click)="debutConduite()">Début conduite Altéo</li>
-      <li (click)="finConduite()">Fin conduite Altéo</li>
-    </ul>
+    <div *ngIf="testimonyOnMap">
+      <h3>Testimony</h3>
+      <ul>
+        <li *ngFor="let test of testimony" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+      </ul>
+    </div>
+    <div *ngIf="crassiersOnMap">
+      <h3>Crassiers</h3>
+      <ul>
+        <li *ngFor="let crassier of crassiers" (click)="centerOnCrassiers(crassier)">{{ crassier.nom }}</li>
+      </ul>
+    </div>
+    <div *ngIf="conduiteOnMap">
+      <h3>Conduite</h3>
+      <ul>
+        <li (click)="debutConduite()">Début conduite Altéo</li>
+        <li (click)="finConduite()">Fin conduite Altéo</li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -16,12 +16,12 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<boolean> {
-    let headers = new HttpHeaders();
+    const headers = new HttpHeaders();
     headers.append("Content-type", "application/x-www-form-urlencoded");
 
-    var form_data = "";
+    let form_data = "";
 
-    let data = {
+    const data = {
       grant_type: "client_credentials",
       username: username,
       password: password,
@@ -30,7 +30,8 @@ export class AuthenticationService {
       scope: "basic email"
     };
 
-    for (var key in data) {
+    // tslint:disable-next-line:forin
+    for (const key in data) {
       form_data += key + "=" + data[key] + "&";
     }
 
@@ -44,6 +45,7 @@ export class AuthenticationService {
       )
       .map((response: any) => {
         // login successful if there's a jwt token in the response
+        // tslint:disable-next-line:no-console
         console.info(response);
         const token = response && response.access_token;
         if (token) {

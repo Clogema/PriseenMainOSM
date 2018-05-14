@@ -1,12 +1,26 @@
 {
   "testimony": [
     {
-      "nom": "Test",
-      "pos": [43.540891, 5.299717]
+      "title": "Testimony 1",
+      "description": "C'est une description",
+      "lattitude": 43.560891,
+      "longitude": 5.399717,
+      "user": 4
     },
     {
-      "nom": "Test2",
-      "pos": [43.540891, 5.399717]
+      "title": "Testimony 2",
+      "description": "C'est une autre description",
+      "lattitude": 43.540891,
+      "longitude": 5.199717,
+      "user": 4
+    },
+    {
+      "title": "Testimony 3",
+      "description":
+        "C'est une très très très très très très très très très très très très très très très très très loooooooooongue description",
+      "lattitude": 43.172849,
+      "longitude": 5.380874,
+      "user": 4
     }
   ],
   "csdu": [{}],
