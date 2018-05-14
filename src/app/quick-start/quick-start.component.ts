@@ -5,6 +5,7 @@ import {
   HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
+import { EditorialService } from "../_services";
 
 @Component({
   selector: "app-quick-start",
@@ -25,8 +26,11 @@ export class QuickStartComponent implements OnInit {
 
   crassiers: any;
   testimony: any;
+  testimonies:any[];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public editorial: EditorialService) {
+    this.testimonies = this.editorial.get();
+  }
 
   ngOnInit() {
     console.log(this.testimonyOnMap);

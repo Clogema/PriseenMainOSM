@@ -16,6 +16,16 @@
           <textarea class="form-control" name="description" [(ngModel)]="testimony.description" #description="ngModel" required></textarea>
           <div *ngIf="f.submitted && !description.valid" class="help-block">description is required</div>
         </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
+          <label for="longitude">longitude</label>
+          <input type="number" class="form-control" name="longitude" [(ngModel)]="testimony.longitude" #longitude="ngModel" required />
+          <div *ngIf="f.submitted && !longitude.valid" class="help-block">longitude is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !latitude.valid }">
+          <label for="latitude">latitude</label>
+          <input type="number" class="form-control" name="latitude" [(ngModel)]="testimony.latitude" #latitude="ngModel" required />
+          <div *ngIf="f.submitted && !latitude.valid" class="help-block">latitude is required</div>
+        </div>
         <div class="form-group">
           <button class="btn btn-primary">Valider</button>
           <div *ngIf="error" class="alert alert-danger">{{error}}</div>

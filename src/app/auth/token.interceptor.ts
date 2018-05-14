@@ -18,6 +18,10 @@ export class TokenInterceptor implements HttpInterceptor {
             return next.handle(request);
         }
 
+        if (request.url.match("editorial/add.php")){
+            return next.handle(request);
+        }
+
         request = request.clone({
             setHeaders: {
                 Authorization: "Bearer " + this.auth.token,
