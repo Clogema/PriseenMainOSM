@@ -14,4 +14,10 @@ export class EditorialService {
     post(){
 
     }
+
+    get() : any{
+        return this.http.get("http://localhost/oauth/examples/public/editorial/get.php").subscribe((response:any) => {
+            return response;
+        });
+    }
 }

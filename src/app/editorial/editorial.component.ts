@@ -27,7 +27,11 @@ export class EditorialComponent implements OnInit {
 
     const data = {
       title: this.testimony.title,
-      description: this.testimony.description
+      description: this.testimony.description,
+      longitude: this.testimony.longitude,
+      latitude: this.testimony.latitude,
+      username: this.user.username,
+      url: "http://localhost/img.png",
     };
 
     // tslint:disable-next-line:forin
@@ -41,10 +45,13 @@ export class EditorialComponent implements OnInit {
 
     return this.http
       .post(
-        "http://localhost/oauth/examples/public/api.php/editorial/add",
-        encodeURI(form_data),
-        { headers: { "Content-type": "application/x-www-form-urlencoded" } }
+        "http://localhost/oauth/examples/public/editorial/add.php",
+        form_data,
+        { headers: { "Content-type": "application/x-www-form-urlencoded"} }
       )
-      .map((response: any) => {});
+      .subscribe((response: any) => {
+        console.log(response);
+        return true;
+      });
   }
 }
