@@ -13,10 +13,10 @@ import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./_guards";
 import { AuthenticationService, UserService } from "./_services";
 import { MockBackend } from "@angular/http/testing";
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './auth/token.interceptor';
-import { EditorialComponent } from './editorial/editorial.component';
-import { LogoutComponent } from './logout/logout.component';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenInterceptor } from "./auth/token.interceptor";
+import { EditorialComponent } from "./editorial/editorial.component";
+import { LogoutComponent } from "./logout/logout.component";
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
@@ -24,7 +24,11 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
-  { path: "editorial", component: EditorialComponent, canActivate: [AuthGuard] },
+  {
+    path: "editorial",
+    component: EditorialComponent
+    // canActivate: [AuthGuard]
+  },
   { path: "**", redirectTo: "" }
 ];
 

@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import * as L from "leaflet";
-import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from "@angular/common/http";
 
 @Component({
   selector: "app-quick-start",
@@ -17,12 +21,13 @@ export class QuickStartComponent implements OnInit {
   myMap: any;
 
   crassiers: any;
+  testimony: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom. Laissez "frugalmap" dans la fonction map
-    this.myMap = L.map("frugalmap").setView([43.205068, 5.513651], 15);
+    this.myMap = L.map("frugalmap").setView([43.205068, 5.513651], 11);
 
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
       attribution: "My Map"
@@ -58,7 +63,7 @@ export class QuickStartComponent implements OnInit {
     // gestion événement : au click
 
     /* const popup = new L.Popup();
-    
+
     function onMapClick(e) {
       popup
         .setLatLng(e.latlng)
@@ -68,16 +73,40 @@ export class QuickStartComponent implements OnInit {
 
     this.myMap.on("click", onMapClick); */
 
+    // this.getTestimony();
     this.getConduite();
     this.getCrassiers();
   }
 
+  /*public getTestimony() {
+    this.http.get<any>("/assets/data.json").subscribe(result => {
+      const testimony = result.testimony;
+      this.testimony = testimony;
+
+      for (const test of testimony) {
+        // ajouter un marker pour chaque crassier
+        const iconMarker = L.icon({
+          iconUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
+        });
+
+        const circle = L.circle(testimony.pos, {
+          color: "blue",
+          fillColor: "blue",
+          fillOpacity: 0.5,
+          radius: 100
+        }).addTo(this.myMap);
+        circle.bindTooltip(testimony.nom);
+      }
+    });
+  }*/
+
   public getCrassiers() {
     this.http.get<any>("/assets/data.json").subscribe(result => {
-      let crassiers = result.crassiers;
+      const crassiers = result.crassiers;
       this.crassiers = crassiers;
 
-      for (let crassier of crassiers) {
+      for (const crassier of crassiers) {
         // ajouter un marker pour chaque crassier
         const iconMarker = L.icon({
           iconUrl:
@@ -89,7 +118,7 @@ export class QuickStartComponent implements OnInit {
         }).addTo(this.myMap);
         marker.bindPopup(crassier.nom); */
 
-        let circle = L.circle(crassier.pos, {
+        const circle = L.circle(crassier.pos, {
           color: "red",
           fillColor: "red",
           fillOpacity: 0.5,
@@ -114,7 +143,7 @@ export class QuickStartComponent implements OnInit {
 
   public getConduite() {
     this.http.get<any>("/assets/data.json").subscribe(result => {
-      let latlngs = result.conduite;
+      const latlngs = result.conduite;
 
       // ajouter un polygone
       const conduite = L.polyline(latlngs, { color: "red" }).addTo(this.myMap);

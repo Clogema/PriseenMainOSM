@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, Response, RequestOptions } from "@angular/http";
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from "rxjs/operators";
 import { Observable } from "rxjs/Observable";
-import { of } from 'rxjs/observable/of';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { of } from "rxjs/observable/of";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class AuthenticationService {
@@ -22,12 +22,12 @@ export class AuthenticationService {
     var form_data = "";
 
     let data = {
-      "grant_type": 'client_credentials',
-      "username": username,
-      "password": password,
-      "client_id": username,
-      "client_secret": password,
-      "scope": 'basic email',
+      grant_type: "client_credentials",
+      username: username,
+      password: password,
+      client_id: username,
+      client_secret: password,
+      scope: "basic email"
     };
 
     for (var key in data) {
@@ -37,7 +37,11 @@ export class AuthenticationService {
     form_data = form_data.substring(0, form_data.length - 1);
 
     return this.http
-      .post("http://localhost/oauth/examples/public/client_credentials.php/access_token", encodeURI(form_data), { headers: { "Content-type": "application/x-www-form-urlencoded" } })
+      .post(
+        "http://localhost/oauth/examples/public/client_credentials.php/access_token",
+        encodeURI(form_data),
+        { headers: { "Content-type": "application/x-www-form-urlencoded" } }
+      )
       .map((response: any) => {
         // login successful if there's a jwt token in the response
         console.info(response);
