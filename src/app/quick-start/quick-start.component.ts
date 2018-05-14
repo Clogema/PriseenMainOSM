@@ -73,12 +73,12 @@ export class QuickStartComponent implements OnInit {
 
     this.myMap.on("click", onMapClick); */
 
-    // this.getTestimony();
+    this.getTestimony();
     this.getConduite();
     this.getCrassiers();
   }
 
-  /*public getTestimony() {
+  public getTestimony() {
     this.http.get<any>("/assets/data.json").subscribe(result => {
       const testimony = result.testimony;
       this.testimony = testimony;
@@ -90,16 +90,17 @@ export class QuickStartComponent implements OnInit {
             "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
         });
 
-        const circle = L.circle(testimony.pos, {
+        const circle = L.circle(test.pos, {
           color: "blue",
           fillColor: "blue",
           fillOpacity: 0.5,
-          radius: 100
+          radius: 300
         }).addTo(this.myMap);
-        circle.bindTooltip(testimony.nom);
+        circle.bindTooltip(test.title);
+        circle.bindPopup("<b>" + test.title + "</b><br>" + test.description);
       }
     });
-  }*/
+  }
 
   public getCrassiers() {
     this.http.get<any>("/assets/data.json").subscribe(result => {

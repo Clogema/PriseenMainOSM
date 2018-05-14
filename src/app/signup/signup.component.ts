@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AuthenticationService } from "../_services";
 import { User } from "../_models";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-signup",
@@ -11,8 +12,13 @@ import { User } from "../_models";
 export class SignupComponent implements OnInit {
   public user: User;
   newuser: any = {};
+  error = "";
 
-  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService,
+    private router: Router
+  ) {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
   }
 

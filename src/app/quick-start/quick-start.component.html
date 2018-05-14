@@ -5,11 +5,15 @@
     </div>
   </div>
   <div class="col-sm-2">
+    <h3>Testimony</h3>
+    <ul>
+      <li *ngFor="let test of testimony" (click)="centerOn(test)">{{ test.title }}</li>
+    </ul>
     <h3>Crassiers</h3>
     <ul>
       <li *ngFor="let crassier of crassiers" (click)="centerOn(crassier)">{{ crassier.nom }}</li>
     </ul>
-    <h3>Divers</h3> 
+    <h3>Divers</h3>
     <ul>
       <li (click)="debutConduite()">Début conduite Altéo</li>
       <li (click)="finConduite()">Fin conduite Altéo</li>
