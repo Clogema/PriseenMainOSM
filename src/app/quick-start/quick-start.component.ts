@@ -52,12 +52,27 @@ export class QuickStartComponent implements OnInit {
       attribution: "My Map"
     }).addTo(this.myMap);
 
-    const baseMaps = {};
+    const satellite = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        {
+          attribution:
+            // tslint:disable-next-line:max-line-length
+            "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+        }
+      ),
+      plan = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+        attribution: "My Map"
+      });
+
+    const baseMaps = {
+      Satellite: satellite,
+      Plan: plan
+    };
 
     const overlayMaps = {
-      Testimony: this.testimonyLayer,
-      Crassiers: this.crassiersLayer,
-      Conduite: this.conduiteLayer
+      "<span style='color: blue'>Témoignages</span>": this.testimonyLayer,
+      "<span style='color: red'>Crassiers</span>": this.crassiersLayer,
+      "<span style='color: green'>Conduite</span>": this.conduiteLayer
     };
 
     L.control.layers(baseMaps, overlayMaps).addTo(this.myMap);
@@ -141,7 +156,7 @@ export class QuickStartComponent implements OnInit {
   }
 
   public centerOnTestimony(obj: any) {
-    this.myMap.setView(new L.LatLng(obj.lattitude, obj.longitude), 12);
+    this.myMap.setView(new L.LatLng(obj.lattitude, obj.longitude), 13);
   }
 
   public centerOnCrassiers(obj: any) {
@@ -161,34 +176,38 @@ export class QuickStartComponent implements OnInit {
   }
 
   public addLayer(name) {
-    if (name === "Testimony") {
+    if (name === "<span style='color: blue'>Témoignages</span>") {
       this.testimonyOnMap = true;
+      console.log(this.testimonyOnMap);
     }
-    if (name === "Crassiers") {
+    if (name === "<span style='color: red'>Crassiers</span>") {
       this.crassiersOnMap = true;
     }
-    if (name === "Conduite") {
+    if (name === "<span style='color: green'>Conduite</span>") {
       this.conduiteOnMap = true;
     }
   }
 
   public removeLayer(name) {
-    if (name === "Testimony") {
+    if (name === "<span style='color: blue'>Témoignages</span>") {
       this.testimonyOnMap = false;
+      console.log(this.testimonyOnMap);
     }
-    if (name === "Crassiers") {
+    if (name === "<span style='color: red'>Crassiers</span>") {
       this.crassiersOnMap = false;
     }
-    if (name === "Conduite") {
+    if (name === "<span style='color: green'>Conduite</span>") {
       this.conduiteOnMap = false;
     }
   }
 
   public onOverlayAdd(e) {
+    console.log(e.name);
     this.addLayer(e.name);
   }
 
   public onOverlayRemove(e) {
+    console.log(e.name);
     this.removeLayer(e.name);
   }
 }

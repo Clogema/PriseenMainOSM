@@ -3,6 +3,16 @@
   width: 100%;
 }
 
+#legend {
+  height: 800px;
+}
+
+#testimony,
+#crassier,
+#conduite {
+  height: 200px;
+}
+
 li {
   cursor: pointer;
 }

@@ -5,12 +5,12 @@
     </div>
   </div>
 
-  <div class="col-sm-2">
-    <button data-target="#testimony" *ngIf="testimonyOnMap" class="btn btn-primary btn-block btn-lg" data-toggle="collapse">Testimony
+  <div id="legend" class="col-sm-2">
+    <button data-target="#testimony" *ngIf="testimonyOnMap" class="btn btn-primary btn-block btn-lg" data-toggle="collapse">Témoignages
       <span class="caret"></span>
     </button>
 
-    <div id="testimony" *ngIf="testimonyOnMap" class="collapse">
+    <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let test of testimony" (click)="centerOnTestimony(test)">{{ test.title }}</li>
       </ul>
@@ -21,7 +21,7 @@
     <button data-target="#crassier" *ngIf="crassiersOnMap" class="btn btn-danger btn-block btn-lg" data-toggle="collapse">Crassiers
       <span class="caret"></span>
     </button>
-    <div id="crassier" *ngIf="crassiersOnMap" class="collapse">
+    <div id="crassier" *ngIf="crassiersOnMap" class="collapse in pre-scrollable">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let crassier of crassiers" (click)="centerOnCrassiers(crassier)">{{ crassier.nom }}</li>
       </ul>
@@ -32,7 +32,7 @@
     <button data-target="#conduite" *ngIf="conduiteOnMap" class="btn btn-success btn-block btn-lg" data-toggle="collapse">Conduite
       <span class="caret"></span>
     </button>
-    <div id="conduite" *ngIf="conduiteOnMap" class="collapse">
+    <div id="conduite" *ngIf="conduiteOnMap" class="collapse in">
       <ul class="list-group">
         <li class="list-group-item" (click)="debutConduite()">Début conduite Altéo</li>
         <li class="list-group-item" (click)="finConduite()">Fin conduite Altéo</li>
