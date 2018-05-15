@@ -11,7 +11,11 @@ import { QuickStartComponent } from "./quick-start/quick-start.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./_guards";
-import { AuthenticationService, UserService } from "./_services";
+import {
+  AuthenticationService,
+  UserService,
+  EditorialService
+} from "./_services";
 import { MockBackend } from "@angular/http/testing";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./auth/token.interceptor";
@@ -56,6 +60,7 @@ const appRoutes: Routes = [
   providers: [
     AuthGuard,
     AuthenticationService,
+    EditorialService,
     UserService, // providers used to create fake backend
     MockBackend,
     BaseRequestOptions,

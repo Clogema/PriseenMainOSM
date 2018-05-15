@@ -26,7 +26,7 @@ export class QuickStartComponent implements OnInit {
 
   crassiers: any;
   testimony: any;
-  testimonies:any[];
+  testimonies: any[];
 
   constructor(private http: HttpClient, public editorial: EditorialService) {
     this.testimonies = this.editorial.get();
