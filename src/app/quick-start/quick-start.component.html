@@ -10,11 +10,60 @@
       <span class="caret"></span>
     </button>
 
-    <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let test of testimony" (click)="centerOnTestimony(test)">{{ test.title }}</li>
-      </ul>
+    <div *ngIf="testimonyOnMap" class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+              2018</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+          <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
+            <ul class="list-group">
+              <ng-container *ngFor="let test of testimony">
+                <li class="list-group-item" *ngIf="test.annee == 2018" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="testimonyOnMap" class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+              2017</a>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+          <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
+            <ul class="list-group">
+              <ng-container *ngFor="let test of testimony">
+                <li class="list-group-item" *ngIf="test.annee == 2017" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="testimonyOnMap" class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+              2016 et plus</a>
+          </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+          <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
+            <ul class="list-group">
+              <ng-container *ngFor="let test of testimony">
+                <li class="list-group-item" *ngIf="test.annee <= 2016" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
     <br *ngIf="testimonyOnMap">
     <br *ngIf="testimonyOnMap">
 

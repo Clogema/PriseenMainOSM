@@ -113,6 +113,8 @@ export class QuickStartComponent implements OnInit {
             test.description +
             "<br> <div align='right'><i>" +
             test.user +
+            ", " +
+            test.annee +
             "</i></div>"
         );
       }

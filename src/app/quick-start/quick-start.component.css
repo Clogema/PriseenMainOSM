@@ -7,10 +7,16 @@
   height: 800px;
 }
 
-#testimony,
-#crassier,
-#conduite {
+#testimony {
+  height: 150px;
+}
+
+#crassier {
   height: 200px;
+}
+
+#conduite {
+  height: 100px;
 }
 
 li {
