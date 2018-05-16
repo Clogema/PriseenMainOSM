@@ -7,7 +7,7 @@
     <div *ngIf="testimonyOnMap">
       <h3>Testimony</h3>
       <ul>
-        <li *ngFor="let test of testimony" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+        <li *ngFor="let test of testimonies" (click)="centerOnTestimony(test)">{{ test.title }}</li>
       </ul>
     </div>
     <div *ngIf="crassiersOnMap">

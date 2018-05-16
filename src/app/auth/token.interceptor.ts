@@ -12,13 +12,15 @@ export class TokenInterceptor implements HttpInterceptor {
     constructor(private auth: AuthenticationService
     ) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-
         if (request.url.match("access_token")) {
             return next.handle(request);
         }
 
         if (request.url.match("editorial/add.php")){
+            return next.handle(request);
+        }
+
+        if (request.url.match("editorial/get.php")) {
             return next.handle(request);
         }
 
@@ -28,6 +30,8 @@ export class TokenInterceptor implements HttpInterceptor {
                 "Content-type": "x-www-form-urlencoded",
             }
         });
+
+        console.log(request);
         return next.handle(request);
     }
 }

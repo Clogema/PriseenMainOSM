@@ -8,7 +8,7 @@ import { AuthenticationService } from "./authentication.service";
 @Injectable()
 export class EditorialService {
 
-    constructor(private http: HttpClient, private auth: AuthenticationService) {
+    constructor(private http: HttpClient) {
     }
 
     post(){
@@ -16,8 +16,6 @@ export class EditorialService {
     }
 
     get() : any{
-        return this.http.get("http://localhost/oauth/examples/public/editorial/get.php").subscribe((response:any) => {
-            return response;
-        });
+        return this.http.get("http://localhost/oauth/examples/public/editorial/get.php");
     }
 }

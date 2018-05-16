@@ -26,8 +26,7 @@ export class QuickStartComponent implements OnInit {
   testimony: any;
   testimonies:any[];
 
-  constructor(private http: HttpClient, public editorial: EditorialService) {
-    this.testimonies = this.editorial.get();
+  constructor(private http: HttpClient, private editorial: EditorialService) {
   }
 
   ngOnInit() {
@@ -35,9 +34,11 @@ export class QuickStartComponent implements OnInit {
     this.crassiersLayer = L.layerGroup();
     this.conduiteLayer = L.layerGroup();
 
-    this.getTestimony();
+    //this.getTestimony();
     this.getConduite();
     this.getCrassiers();
+    this.getTestimonies();
+    this.testimonies = [];
 
     // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom. Laissez "frugalmap" dans la fonction map
     // const myMap = L.map("frugalmap").setView([43.205068, 5.513651], 11);
@@ -67,33 +68,32 @@ export class QuickStartComponent implements OnInit {
     this.conduiteOnMap = this.myMap.hasLayer(this.conduiteLayer);
   }
 
-  public getTestimony() {
-    this.http.get<any>("/assets/data.json").subscribe(result => {
-      const testimony = result.testimony;
-      this.testimony = testimony;
-
-      for (const test of testimony) {
+  public getTestimonies() {
+    this.editorial.get().subscribe((response: any) => {
+        for (const test of response) {
+        console.log(test);
+        this.testimonies.push(test);
         // ajouter un marker pour chaque crassier
         const iconMarker = L.icon({
           iconUrl:
             "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
         });
 
-        const circle = L.circle([test.lattitude, test.longitude], {
+        const circle = L.circle([test.longitude, test.latitude], {
           color: "blue",
           fillColor: "blue",
           fillOpacity: 0.5,
-          radius: 300
+          radius: 20
         }).addTo(this.testimonyLayer);
         circle.bindTooltip(test.title);
         circle.bindPopup(
           "<b>" +
-            test.title +
-            "</b><br>" +
-            test.description +
-            "<br> <div align='right'><i>" +
-            test.user +
-            "</i></div>"
+          test.title +
+          "</b><br>" +
+          test.description +
+          "<br> <div align='right'><i>" +
+          test.id_user +
+          "</i></div>"
         );
       }
     });
@@ -110,11 +110,6 @@ export class QuickStartComponent implements OnInit {
           iconUrl:
             "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
         });
-
-        /* let marker = L.marker(crassier.pos, {
-          icon: iconMarker
-        }).addTo(this.myMap);
-        marker.bindPopup(crassier.nom); */
 
         const circle = L.circle(crassier.pos, {
           color: "red",
@@ -136,7 +131,7 @@ export class QuickStartComponent implements OnInit {
   }
 
   public centerOnTestimony(obj: any) {
-    this.myMap.setView(new L.LatLng(obj.lattitude, obj.longitude), 12);
+    this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 12);
   }
 
   public centerOnCrassiers(obj: any) {
