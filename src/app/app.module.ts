@@ -22,6 +22,7 @@ import { TokenInterceptor } from "./auth/token.interceptor";
 import { EditorialComponent } from "./editorial/editorial.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { SignupComponent } from "./signup/signup.component";
+import { AdminComponent } from "./admin/admin.component";
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: "signup", component: SignupComponent },
+  { path: "admin", component: AdminComponent },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: "editorial",
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     HomeComponent,
     EditorialComponent,
     LogoutComponent,
-    SignupComponent
+    SignupComponent,
+    AdminComponent
   ],
   imports: [
     FormsModule,
