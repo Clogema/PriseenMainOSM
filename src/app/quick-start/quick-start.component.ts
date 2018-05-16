@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output } from "@angular/core";
 import * as L from "leaflet";
 import {
   HttpClient,
@@ -18,18 +18,21 @@ export class QuickStartComponent implements OnInit {
   crassiersLayer: any;
   conduiteLayer: any;
 
-  testimonyOnMap: any;
-  crassiersOnMap: any;
-  conduiteOnMap: any;
+  test = true;
+
+  testimonyOnMap = true;
+  crassiersOnMap = true;
+  conduiteOnMap = true;
 
   crassiers: any;
   testimony: any;
-  testimonies:any[];
+  testimonies: any[];
 
   constructor(private http: HttpClient, private editorial: EditorialService) {
   }
 
   ngOnInit() {
+    console.log(this.testimonyOnMap);
     this.testimonyLayer = L.layerGroup();
     this.crassiersLayer = L.layerGroup();
     this.conduiteLayer = L.layerGroup();
@@ -40,11 +43,8 @@ export class QuickStartComponent implements OnInit {
     this.getTestimonies();
     this.testimonies = [];
 
-    // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom. Laissez "frugalmap" dans la fonction map
-    // const myMap = L.map("frugalmap").setView([43.205068, 5.513651], 11);
-
     this.myMap = L.map("frugalmap", {
-      center: [43.205068, 5.513651],
+      center: [43.45267, 5.46163],
       zoom: 11,
       layers: [this.testimonyLayer, this.crassiersLayer, this.conduiteLayer]
     });
@@ -53,19 +53,39 @@ export class QuickStartComponent implements OnInit {
       attribution: "My Map"
     }).addTo(this.myMap);
 
-    const baseMaps = {};
+    const satellite = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        {
+          attribution:
+            // tslint:disable-next-line:max-line-length
+            "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+        }
+      ),
+      plan = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+        attribution: "My Map"
+      });
+
+    const baseMaps = {
+      Satellite: satellite,
+      Plan: plan
+    };
 
     const overlayMaps = {
-      Testimony: this.testimonyLayer,
-      Crassiers: this.crassiersLayer,
-      Conduite: this.conduiteLayer
+      "<span style='color: blue'>Témoignages</span>": this.testimonyLayer,
+      "<span style='color: red'>Crassiers</span>": this.crassiersLayer,
+      "<span style='color: green'>Conduite</span>": this.conduiteLayer
     };
 
     L.control.layers(baseMaps, overlayMaps).addTo(this.myMap);
 
-    this.testimonyOnMap = this.myMap.hasLayer(this.testimonyLayer);
-    this.crassiersOnMap = this.myMap.hasLayer(this.crassiersLayer);
-    this.conduiteOnMap = this.myMap.hasLayer(this.conduiteLayer);
+    this.myMap.on("overlayadd", e => {
+      this.onOverlayAdd(e);
+    });
+    this.myMap.on("overlayremove", e => {
+      this.onOverlayRemove(e);
+    });
+
+    // console.log(this.testimonyOnMap);
   }
 
   public getTestimonies() {
@@ -88,12 +108,14 @@ export class QuickStartComponent implements OnInit {
         circle.bindTooltip(test.title);
         circle.bindPopup(
           "<b>" +
-          test.title +
-          "</b><br>" +
-          test.description +
-          "<br> <div align='right'><i>" +
-          test.id_user +
-          "</i></div>"
+            test.title +
+            "</b><br>" +
+            test.description +
+            "<br> <div align='right'><i>" +
+            test.user +
+            ", " +
+            test.annee +
+            "</i></div>"
         );
       }
     });
@@ -148,6 +170,42 @@ export class QuickStartComponent implements OnInit {
       );
       conduite.bindTooltip("Conduite Alteo");
     });
+  }
+
+  public addLayer(name) {
+    if (name === "<span style='color: blue'>Témoignages</span>") {
+      this.testimonyOnMap = true;
+      console.log(this.testimonyOnMap);
+    }
+    if (name === "<span style='color: red'>Crassiers</span>") {
+      this.crassiersOnMap = true;
+    }
+    if (name === "<span style='color: green'>Conduite</span>") {
+      this.conduiteOnMap = true;
+    }
+  }
+
+  public removeLayer(name) {
+    if (name === "<span style='color: blue'>Témoignages</span>") {
+      this.testimonyOnMap = false;
+      console.log(this.testimonyOnMap);
+    }
+    if (name === "<span style='color: red'>Crassiers</span>") {
+      this.crassiersOnMap = false;
+    }
+    if (name === "<span style='color: green'>Conduite</span>") {
+      this.conduiteOnMap = false;
+    }
+  }
+
+  public onOverlayAdd(e) {
+    console.log(e.name);
+    this.addLayer(e.name);
+  }
+
+  public onOverlayRemove(e) {
+    console.log(e.name);
+    this.removeLayer(e.name);
   }
 }
 

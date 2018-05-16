@@ -3,6 +3,31 @@
   width: 100%;
 }
 
+#legend {
+  height: 800px;
+}
+
+#testimony {
+  height: 150px;
+}
+
+#crassier {
+  height: 200px;
+}
+
+#conduite {
+  height: 100px;
+}
+
+div {
+  color: black;
+}
+
 li {
   cursor: pointer;
+}
+
+.btn-org {
+  background-color: #ff4900;
+  color: white;
 }
