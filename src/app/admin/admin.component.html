@@ -3,9 +3,9 @@
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <div *ngIf="users.length" class="panel panel-default">
+      <div class="panel panel-default">
         <div class="panel-heading">Utilisateurs à valider</div>
-        <div class="panel-body">
+        <div *ngIf="users.length" class="panel-body">
           <ul class="list-group">
             <li class="list-group-item flex" *ngFor="let user of users">
               <div>{{ user.firstname }} {{ user.lastname.toUpperCase() }}</div>
@@ -18,6 +18,11 @@
                 </button>
               </div>
             </li>
+          </ul>
+        </div>
+        <div *ngIf="!users.length">
+          <ul class="list-group">
+            <li class="list-group-item">Aucun utilisateur à valider</li>
           </ul>
         </div>
       </div>
