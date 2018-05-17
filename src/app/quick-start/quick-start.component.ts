@@ -85,7 +85,6 @@ export class QuickStartComponent implements OnInit {
       this.onOverlayRemove(e);
     });
 
-    // console.log(this.testimonyOnMap);
   }
 
   public getTestimonies() {
@@ -112,9 +111,9 @@ export class QuickStartComponent implements OnInit {
             "</b><br>" +
             test.description +
             "<br> <div align='right'><i>" +
-            test.user +
+            (test.id_user ? test.id_user : 'Anonyme')+
             ", " +
-            test.annee +
+            test.annee.substr(0,10) +
             "</i></div>"
         );
       }
@@ -153,7 +152,7 @@ export class QuickStartComponent implements OnInit {
   }
 
   public centerOnTestimony(obj: any) {
-    this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 12);
+    this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 15);
   }
 
   public centerOnCrassiers(obj: any) {

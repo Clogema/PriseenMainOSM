@@ -24,6 +24,10 @@ img {
   margin-right: auto;
 }
 
+.margin{
+  margin-right: 10px;
+}
+
 .navbar-right,
 a {
   color: white;

@@ -30,8 +30,7 @@ const appRoutes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: "editorial",
-    component: EditorialComponent
-    // canActivate: [AuthGuard]
+    component: EditorialComponent, canActivate: [AuthGuard]
   },
   { path: "**", redirectTo: "" }
 ];
@@ -71,4 +70,4 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

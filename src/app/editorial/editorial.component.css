@@ -2,3 +2,8 @@
   background-color: #ff4900;
   color: white;
 }
+
+.flex{
+  display: flex;
+  align-items: normal;
+}

@@ -13,22 +13,25 @@
         <a class="navbar-left" href="/quick ">
           <img src="../assets/log.png" alt="Logo">
         </a>
+        <h2 *ngIf="currentUser">
+          Bonjour {{currentUser.username}}
+        </h2>
       </div>
       <ul class="nav navbar-nav navbar-right ">
-        <li *ngIf="!currentUser ">
+        <li *ngIf="!currentUser">
           <a href="/login ">Se connecter
             <span class="glyphicon glyphicon-user"></span>
           </a>
         </li>
-        <li *ngIf="!currentUser ">
+        <li *ngIf="!currentUser">
           <a href="/signup ">S'inscrire
             <span class="glyphicon glyphicon-pencil"></span>
           </a>
         </li>
-        <li *ngIf="currentUser ">
-          Bonjour {{currentUser.name}}
+        <li *ngIf="currentUser">
+          <a href="/editorial ">Témoigner</a>
         </li>
-        <li *ngIf="currentUser ">
+        <li *ngIf="currentUser">
           <a href="/logout ">Se déconnecter</a>
         </li>
       </ul>
