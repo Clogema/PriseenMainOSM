@@ -14,6 +14,18 @@ export class UserService {
     private authenticationService: AuthenticationService
   ) { }
 
+  validate(user:User){
+    return this.http
+      .post("http://localhost/oauth/examples/public/api.php/user/validate", {id: user.id})
+      .map((response:any) => response);
+  }
+
+  delete(user:User) {
+    return this.http
+      .post("http://localhost/oauth/examples/public/api.php/user/delete", { id: user.id })
+      .map((response: any) => response);
+  }
+
   getUsers(): Observable<Response> {
     let headers = new Headers();
     headers.append("Authorization", "Bearer " + this.authenticationService.token);

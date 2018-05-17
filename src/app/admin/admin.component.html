@@ -3,25 +3,21 @@
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <div *ngIf="users.count>0" class="panel panel-default">
+      <div *ngIf="users.length" class="panel panel-default">
         <div class="panel-heading">Utilisateurs à valider</div>
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item flex" *ngFor="let user of users">
-              <div>{{ user.firstname }} - {{ user.lastname }}</div>
+              <div>{{ user.firstname }} {{ user.lastname.toUpperCase() }}</div>
               <div class="button">
-                <button type="button" class="btn btn-default btn-success" aria-label="Ok">
+                <button (click)="validateUser(user)" type="button" class="btn btn-default btn-success" aria-label="Ok">
                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default btn-danger" aria-label="Close">
+                <button (click)="deleteUser(user)" type="button" class="btn btn-default btn-danger" aria-label="Close">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
               </div>
             </li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
           </ul>
         </div>
       </div>

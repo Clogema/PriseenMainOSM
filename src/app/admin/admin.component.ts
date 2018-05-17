@@ -18,9 +18,27 @@ export class AdminComponent implements OnInit {
     this.getUsersToValidate();
   }
 
+  validateUser(user:User){
+    this.user.validate(user).subscribe((response:any) => {
+      console.log(response);
+      if (response.status == "success"){
+        this.users = this.users.filter(x => (x.id != user.id));
+      }
+    });
+  }
+
+  deleteUser(user:User){
+    this.user.delete(user).subscribe((response: any) => {
+      console.log(response);
+      if (response.status == "success") {
+        this.users = this.users.filter(x => (x.id != user.id));
+      }
+    });
+  }
+
   getUsersToValidate(){
     this.user.getUsersToValidate().subscribe((response:User[])=>{
-      console.log(response);
+      console.log("Getting users...");
       this.users = response;
     });
   }
