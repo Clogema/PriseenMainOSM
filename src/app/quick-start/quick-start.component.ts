@@ -111,7 +111,7 @@ export class QuickStartComponent implements OnInit {
             "</b><br>" +
             test.description +
             "<br> <div align='right'><i>" +
-            (test.id_user ? test.id_user : 'Anonyme')+
+            (test.id ? test.id : 'Anonyme')+
             ", " +
             test.annee.substr(0,10) +
             "</i></div>"

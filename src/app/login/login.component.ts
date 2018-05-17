@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           console.log(result);
           if (result === true) {
             // login successful
-            this.router.navigate(["/"]);
+            this.authenticationService.getUser(this.model.username);
           } else {
             // login failed
             this.error = "Username or password is incorrect";

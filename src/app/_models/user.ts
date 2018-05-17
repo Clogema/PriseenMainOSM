@@ -1,9 +1,11 @@
 export class User {
-  id_user: number;
+  id: number;
   username: string;
   password: string;
   email: string;
   createdAt: Date;
   firstname: string;
   lastname: string;
+  role: string;
+  token: string;
 }

@@ -10,7 +10,7 @@ import { LayerComponent } from "./layer/layer.component";
 import { QuickStartComponent } from "./quick-start/quick-start.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
-import { AuthGuard } from "./_guards";
+import { AuthGuard, AdminGuard } from "./_guards";
 import { AuthenticationService, UserService, EditorialService } from "./_services";
 import { MockBackend } from "@angular/http/testing";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: "signup", component: SignupComponent },
-  { path: "admin", component: AdminComponent },
+  { path: "admin", component: AdminComponent , canActivate: [AdminGuard]},
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: "editorial",
@@ -57,6 +57,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     AuthenticationService,
     EditorialService,
     UserService, // providers used to create fake backend
