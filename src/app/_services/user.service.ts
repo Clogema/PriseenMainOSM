@@ -26,4 +26,10 @@ export class UserService {
       .get("http://localhost/oauth/examples/public/api.php/users")
       .map((response: Response) => response);
   }
+
+  getUsersToValidate(): Observable<User[]>{
+      return this.http
+      .get("http://localhost/oauth/examples/public/api.php/users/validate")
+      .map((response: User[]) => response);
+  }
 }

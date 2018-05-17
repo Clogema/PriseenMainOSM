@@ -18,6 +18,11 @@
         </h2>
       </div>
       <ul class="nav navbar-nav navbar-right ">
+        <li *ngIf="currentUser?.role == 'ADMIN'">
+          <a href="/admin ">Admin
+            <span class="glyphicon glyphicon-user"></span>
+          </a>
+        </li>
         <li *ngIf="!currentUser">
           <a href="/login ">Se connecter
             <span class="glyphicon glyphicon-user"></span>

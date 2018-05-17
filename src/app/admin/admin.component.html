@@ -1,4 +1,51 @@
 <div class="container">
-  <div class="well">C'est la page admin !
-    <br> Mais je ne suis pas sûre de ce qu'il faut mettre dedans</div>
+  <div class="well">Administration
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div *ngIf="users.count>0" class="panel panel-default">
+        <div class="panel-heading">Utilisateurs à valider</div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item flex" *ngFor="let user of users">
+              <div>{{ user.firstname }} - {{ user.lastname }}</div>
+              <div class="button">
+                <button type="button" class="btn btn-default btn-success" aria-label="Ok">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-danger" aria-label="Close">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </div>
+            </li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Articles à valider</div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  <h4 class="list-group-item-heading">List group item heading</h4>
+                  <p class="list-group-item-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident?</p>
+                </a>
+              </div>
+            </li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
