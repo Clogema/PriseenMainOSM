@@ -1,5 +1,22 @@
 <div class="container">
-  <div class="well">Administration
+  <div class="well">
+    <p>Administration</p>
+    <div class="row">
+      <div *ngIf="success != ''" class="alert alert-success alert-dismissible flex" role="alert">
+        <div id="msg-success">{{ success }}</div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="error != ''" class="alert alert-danger alert-dismissible flex" role="alert">
+        <div id="msg-danger">{{ error }}</div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-lg-6">
@@ -30,20 +47,38 @@
     <div class="col-lg-6">
       <div class="panel panel-default">
         <div class="panel-heading">Articles à valider</div>
-        <div class="panel-body">
+        <div *ngIf="testimonies.length" class="panel-body">
           <ul class="list-group">
-            <li class="list-group-item">
+            <li *ngFor="let testimony of testimonies" class="list-group-item">
               <div class="list-group">
-                <a href="#" class="list-group-item active">
-                  <h4 class="list-group-item-heading">List group item heading</h4>
-                  <p class="list-group-item-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident?</p>
-                </a>
+                <div href="#!" class="list-group-item active">
+                  <h4 class="list-group-item-heading flex">
+                    <div>
+                      {{ testimony.title }}
+                    </div>
+                    <div class="button">
+                      <button (click)="validateTestimony(testimony)" type="button" class="btn btn-default btn-success" aria-label="Ok">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                      </button>
+                      <button (click)="deleteTestimony(testimony)" type="button" class="btn btn-default btn-danger" aria-label="Close">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </h4>
+                  <div class="list-group-item-text">
+                    <p>{{ testimony.description }}</p>
+                    <hr/>
+                    <p><i>{{ (testimony.id_user != null) ? testimony.id_user : 'Anonyme' }} -
+                    <small class="white-text">{{ testimony.annee.substring(0,10) }}</small></i></p>
+                  </div>
+                </div>
               </div>
             </li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+        <div *ngIf="!testimonies.length">
+          <ul class="list-group">
+            <li class="list-group-item">Aucun article à valider</li>
           </ul>
         </div>
       </div>

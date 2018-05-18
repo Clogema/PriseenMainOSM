@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 export class SignupComponent implements OnInit {
   public user: User;
-  newuser: any = {};
+  newuser:User = new User();
   error = "";
 
   constructor(
@@ -25,32 +25,15 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   signup() {
+    console.log("Signup called");
     const headers = new HttpHeaders();
-    headers.append("Content-type", "application/x-www-form-urlencoded");
-
-    let form_data = "";
 
     const data = {
       username: this.newuser.username,
       password: this.newuser.password,
-      email: this.newuser.email
+      email: this.newuser.email,
+      firstname: this.newuser.firstname,
+      lastname: this.newuser.lastname,
     };
-
-    // tslint:disable-next-line:forin
-    for (const key in data) {
-      form_data += key + "=" + data[key] + "&";
-    }
-
-    form_data = form_data.substring(0, form_data.length - 1);
-
-    console.log(data);
-
-    return this.http
-      .post(
-        "http://localhost/oauth/examples/public/api.php/editorial/add",
-        encodeURI(form_data),
-        { headers: { "Content-type": "application/x-www-form-urlencoded" } }
-      )
-      .map((response: any) => {});
   }
 }
