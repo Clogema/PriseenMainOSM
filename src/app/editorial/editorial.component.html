@@ -15,8 +15,7 @@
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
           <label for="date">Date</label>
-          <input type="date" class="form-control" name="date" [(ngModel)]="testimony.date" #date="ngModel" required
-          />
+          <input type="date" class="form-control" name="date" [(ngModel)]="testimony.date" #date="ngModel" required />
           <div *ngIf="f.submitted && !date.valid" class="help-block">La date est obligatoire</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
