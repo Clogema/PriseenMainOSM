@@ -11,7 +11,11 @@ import { QuickStartComponent } from "./quick-start/quick-start.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard, AdminGuard } from "./_guards";
-import { AuthenticationService, UserService, EditorialService } from "./_services";
+import {
+  AuthenticationService,
+  UserService,
+  EditorialService
+} from "./_services";
 import { MockBackend } from "@angular/http/testing";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./auth/token.interceptor";
@@ -26,11 +30,12 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: "signup", component: SignupComponent },
-  { path: "admin", component: AdminComponent , canActivate: [AdminGuard]},
+  { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: "editorial",
-    component: EditorialComponent, canActivate: [AuthGuard]
+    component: EditorialComponent,
+    canActivate: [AuthGuard]
   },
   { path: "**", redirectTo: "" }
 ];
@@ -71,4 +76,4 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -8,13 +8,13 @@ import { User, Testimony } from "../_models";
   styleUrls: ["./admin.component.css"]
 })
 export class AdminComponent implements OnInit {
-  users:User[];
-  testimonies:Testimony[];
+  users: User[];
+  testimonies: Testimony[];
 
-  error:string = "";
-  success:string = "";
-  
-  constructor(private user:UserService, private editorial:EditorialService) {
+  error = "";
+  success = "";
+
+  constructor(private user: UserService, private editorial: EditorialService) {
     this.users = [];
     this.testimonies = [];
   }
@@ -27,9 +27,9 @@ export class AdminComponent implements OnInit {
   validateTestimony(testimony: Testimony) {
     this.editorial.validate(testimony).subscribe((response: any) => {
       console.log(response);
-      if (response.status == "success") {
+      if (response.status === "success") {
         this.success = "Témoignage validé avec succès";
-        this.testimonies = this.testimonies.filter(x => (x.id != testimony.id));
+        this.testimonies = this.testimonies.filter(x => x.id !== testimony.id);
       } else {
         this.error = "Echec de la validation du témoignage";
       }
@@ -39,48 +39,50 @@ export class AdminComponent implements OnInit {
   deleteTestimony(testimony: Testimony) {
     this.editorial.delete(testimony).subscribe((response: any) => {
       console.log(response);
-      if (response.status == "success") {
-        this.testimonies = this.testimonies.filter(x => (x.id != testimony.id));
+      if (response.status === "success") {
+        this.testimonies = this.testimonies.filter(x => x.id !== testimony.id);
         this.success = "Témoignage supprimé avec succès";
       } else {
-        this.error = "Echec de la suppression du témoignage"
+        this.error = "Echec de la suppression du témoignage";
       }
     });
   }
 
-  getTestimoniesToValidate(){
-    this.editorial.getTestimoniesToValidate().subscribe((response:Testimony[])=>{
-      console.log(response);
-      this.testimonies = response;
-    });
+  getTestimoniesToValidate() {
+    this.editorial
+      .getTestimoniesToValidate()
+      .subscribe((response: Testimony[]) => {
+        console.log(response);
+        this.testimonies = response;
+      });
   }
 
-  validateUser(user:User){
-    this.user.validate(user).subscribe((response:any) => {
+  validateUser(user: User) {
+    this.user.validate(user).subscribe((response: any) => {
       console.log(response);
-      if (response.status == "success"){
+      if (response.status === "success") {
         this.success = "Utilisateur validé avec succès";
-        this.users = this.users.filter(x => (x.id != user.id));
+        this.users = this.users.filter(x => x.id !== user.id);
       } else {
         this.error = "Echec de la validation de l'utilisateur";
       }
     });
   }
 
-  deleteUser(user:User){
+  deleteUser(user: User) {
     this.user.delete(user).subscribe((response: any) => {
       console.log(response);
-      if (response.status == "success") {
-        this.users = this.users.filter(x => (x.id != user.id));
+      if (response.status === "success") {
+        this.users = this.users.filter(x => x.id !== user.id);
         this.success = "Utilisateur supprimé avec succès";
       } else {
-        this.error = "Echec de la suppression de l'utilisateur"
+        this.error = "Echec de la suppression de l'utilisateur";
       }
     });
   }
 
-  getUsersToValidate(){
-    this.user.getUsersToValidate().subscribe((response:User[])=>{
+  getUsersToValidate() {
+    this.user.getUsersToValidate().subscribe((response: User[]) => {
       console.log("Getting users...");
       this.users = response;
     });
