@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 export class SignupComponent implements OnInit {
   public user: User;
-  newuser:User = new User();
+  newuser: User = new User();
   error = "";
 
   constructor(
@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
       password: this.newuser.password,
       email: this.newuser.email,
       firstname: this.newuser.firstname,
-      lastname: this.newuser.lastname,
+      lastname: this.newuser.lastname
     };
   }
 }
