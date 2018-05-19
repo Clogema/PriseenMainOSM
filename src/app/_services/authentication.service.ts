@@ -11,26 +11,27 @@ import { Router } from "@angular/router";
 export class AuthenticationService {
   public token: string;
 
-  constructor(private http: HttpClient, private router:Router) {
+  constructor(private http: HttpClient, private router: Router) {
     // set token if saved in local storage
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.token = currentUser && currentUser.token;
   }
 
-  getUser(username:string):any{
-    return this.http.post("http://localhost/oauth/examples/public/api.php/user", { username: username }).subscribe((response: any) => {
-      const user: User = response;
-      user.token = this.token;
-      if (user.id) {
-        localStorage.setItem(
-          "currentUser",
-          JSON.stringify(user)
-        );
-      }
-      console.log(response);
-      this.router.navigate(["/"]);
-      return (user.id != undefined);
-    });
+  getUser(username: string): any {
+    return this.http
+      .post("http://localhost/oauth/examples/public/api.php/user", {
+        username: username
+      })
+      .subscribe((response: any) => {
+        const user: User = response;
+        user.token = this.token;
+        if (user.id) {
+          localStorage.setItem("currentUser", JSON.stringify(user));
+        }
+        console.log(response);
+        this.router.navigate(["/quick"]);
+        return user.id !== undefined;
+      });
   }
 
   login(username: string, password: string): Observable<boolean> {
@@ -69,7 +70,7 @@ export class AuthenticationService {
           // set token property
           this.token = token;
 
-          /* 
+          /*
           localStorage.setItem(
             "currentUser",
             JSON.stringify({ username: username, token: token })
