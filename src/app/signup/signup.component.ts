@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AuthenticationService } from "../_services";
+import { AuthenticationService, UserService } from "../_services";
 import { User } from "../_models";
 import { Router } from "@angular/router";
 
@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private auth: AuthenticationService,
+    private userService: UserService,
     private router: Router
   ) {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
@@ -26,8 +27,6 @@ export class SignupComponent implements OnInit {
 
   signup() {
     console.log("Signup called");
-    const headers = new HttpHeaders();
-
     const data = {
       username: this.newuser.username,
       password: this.newuser.password,
