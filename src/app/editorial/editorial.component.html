@@ -33,9 +33,9 @@
         
         
 
-        <div class="form-group" class="flex">
-          <label for="anonym">Anonyme</label>
-          <input style="margin-left: 4px;" type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" value="false" />
+        <div class="checkbox">
+          <label for="anonym">
+          <input type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" value="false" />Anonyme</label>
         </div>
         <div class="form-group">
           <button class="btn btn-org">Enregistrer</button>
@@ -46,6 +46,9 @@
       </form>
     </div>
     <div class="col-sm-6">
+        <div class="alert alert-info">
+            Cliquez sur la carte pour choisir l'emplacement de votre témoignage
+        </div>
       <div>
         <div id="mapid"></div>
       </div>
