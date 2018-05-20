@@ -11,21 +11,28 @@ import { Router } from "@angular/router";
 export class HomeComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private userService: UserService, private router: Router, private auth: AuthenticationService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private auth: AuthenticationService
+  ) {}
 
   ngOnInit() {
     // get users from secure api end point
-    this.userService.getUsers().subscribe((response:any) => {
-      let users = new Array<User>();
-      response.forEach((user:User) => {
-        users.push(user);
-      });
-      this.users = users;
-    },
-    error => {
-      console.info(error);
-      this.auth.logout();
-      this.router.navigate["/login"];
-    });
+    this.userService.getUsers().subscribe(
+      (response: any) => {
+        const users = new Array<User>();
+        response.forEach((user: User) => {
+          users.push(user);
+        });
+        this.users = users;
+      },
+      error => {
+        console.log(error);
+        this.auth.logout();
+        // tslint:disable-next-line:no-unused-expression
+        this.router.navigate["/login"];
+      }
+    );
   }
 }

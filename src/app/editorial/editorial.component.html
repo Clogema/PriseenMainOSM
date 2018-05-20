@@ -15,8 +15,7 @@
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
           <label for="date">Date</label>
-          <input type="date" class="form-control" name="date" [(ngModel)]="testimony.date" #date="ngModel" required
-          />
+          <input type="date" class="form-control" name="date" [(ngModel)]="testimony.date" #date="ngModel" required />
           <div *ngIf="f.submitted && !date.valid" class="help-block">La date est obligatoire</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
@@ -36,7 +35,7 @@
 
         <div class="form-group" class="flex">
           <label for="anonym">Anonyme</label>
-          <input style="margin-left: 4px;" type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" required>
+          <input style="margin-left: 4px;" type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" value="false" />
         </div>
         <div class="form-group">
           <button class="btn btn-org">Enregistrer</button>

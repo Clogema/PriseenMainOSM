@@ -19,7 +19,12 @@ export class EditorialComponent implements OnInit {
   latitude;
   longitude;
 
-  constructor(private http: HttpClient, private auth: AuthenticationService, private editorial: EditorialService, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService,
+    private editorial: EditorialService,
+    private router: Router
+  ) {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
     this.testimony.longitude = "43.2853647";
     this.testimony.latitude = "5.4535821";
@@ -99,17 +104,19 @@ export class EditorialComponent implements OnInit {
   }
   
   getTestimony() {
-    this.editorial.post(this.testimony)
-      .subscribe((response: boolean) => {
-        if (response){
+    console.log("getTestimony");
+    this.editorial.post(this.testimony).subscribe(
+      (response: boolean) => {
+        if (response) {
           this.router.navigate(["/quick"]);
         } else {
           this.error = "Erreur lors de l'ajout du témoignage";
         }
       },
-    (error) => {
-      console.error(error);
-      this.error = "Erreur lors de l'ajout du témoignage";
-    });
+      error => {
+        console.error(error);
+        this.error = "Erreur lors de l'ajout du témoignage";
+      }
+    );
   }
 }

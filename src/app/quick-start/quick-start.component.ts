@@ -28,8 +28,7 @@ export class QuickStartComponent implements OnInit {
   testimony: any;
   testimonies: any[];
 
-  constructor(private http: HttpClient, private editorial: EditorialService) {
-  }
+  constructor(private http: HttpClient, private editorial: EditorialService) {}
 
   ngOnInit() {
     console.log(this.testimonyOnMap);
@@ -37,7 +36,6 @@ export class QuickStartComponent implements OnInit {
     this.crassiersLayer = L.layerGroup();
     this.conduiteLayer = L.layerGroup();
 
-    //this.getTestimony();
     this.getConduite();
     this.getCrassiers();
     this.getTestimonies();
@@ -84,12 +82,11 @@ export class QuickStartComponent implements OnInit {
     this.myMap.on("overlayremove", e => {
       this.onOverlayRemove(e);
     });
-
   }
 
   public getTestimonies() {
     this.editorial.get().subscribe((response: any) => {
-        for (const test of response) {
+      for (const test of response) {
         console.log(test);
         this.testimonies.push(test);
         // ajouter un marker pour chaque crassier
@@ -111,9 +108,9 @@ export class QuickStartComponent implements OnInit {
             "</b><br>" +
             test.description +
             "<br> <div align='right'><i>" +
-            (test.id_user ? test.id_user : 'Anonyme')+
+            (test.id_user ? test.id_user : "Anonyme") +
             ", " +
-            test.annee.substr(0,10) +
+            test.annee.substr(0, 10) +
             "</i></div>"
         );
       }

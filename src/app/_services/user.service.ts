@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
@@ -12,25 +12,32 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService
-  ) { }
+  ) {}
 
-  validate(user:User){
+  validate(user: User) {
     return this.http
-      .post("http://localhost/oauth/examples/public/api.php/user/validate", {id: user.id})
-      .map((response:any) => response);
+      .post("http://localhost/oauth/examples/public/api.php/user/validate", {
+        id: user.id
+      })
+      .map((response: any) => response);
   }
 
-  delete(user:User) {
+  delete(user: User) {
     return this.http
-      .post("http://localhost/oauth/examples/public/api.php/user/delete", { id: user.id })
+      .post("http://localhost/oauth/examples/public/api.php/user/delete", {
+        id: user.id
+      })
       .map((response: any) => response);
   }
 
   getUsers(): Observable<Response> {
-    let headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.authenticationService.token);
-    
-    let opts = new RequestOptions();
+    const headers = new Headers();
+    headers.append(
+      "Authorization",
+      "Bearer " + this.authenticationService.token
+    );
+
+    const opts = new RequestOptions();
     opts.headers = headers;
 
     // get users from api
@@ -39,8 +46,8 @@ export class UserService {
       .map((response: Response) => response);
   }
 
-  getUsersToValidate(): Observable<User[]>{
-      return this.http
+  getUsersToValidate(): Observable<User[]> {
+    return this.http
       .get("http://localhost/oauth/examples/public/api.php/users/validate")
       .map((response: User[]) => response);
   }
