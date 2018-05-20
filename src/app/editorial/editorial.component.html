@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6">
       <h2>Ajouter un témoignage</h2>
       <form name="form" (ngSubmit)="f.form.valid && getTestimony()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
@@ -21,15 +21,19 @@
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
           <label for="longitude">Longitude</label>
-          <input type="number" class="form-control" name="longitude" [(ngModel)]="testimony.longitude" #longitude="ngModel" required
+          <input type="number" class="form-control" name="longitude" [(ngModel)]="testimony.longitude" #longitude="ngModel" disabled
           />
           <div *ngIf="f.submitted && !longitude.valid" class="help-block">La longitude est obligatoire</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !latitude.valid }">
           <label for="latitude">Latitude</label>
-          <input type="number" class="form-control" name="latitude" [(ngModel)]="testimony.latitude" #latitude="ngModel" required />
+          <input type="number" class="form-control" name="latitude" [(ngModel)]="testimony.latitude" #latitude="ngModel" disabled />
           <div *ngIf="f.submitted && !latitude.valid" class="help-block">La latitude est obligatoire</div>
         </div>
+
+        
+        
+
         <div class="form-group" class="flex">
           <label for="anonym">Anonyme</label>
           <input style="margin-left: 4px;" type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" required>
@@ -41,6 +45,12 @@
           <div *ngIf="error" class="alert alert-danger">{{error}}</div>
         </div>
       </form>
+    </div>
+    <div class="col-sm-6">
+      <div>
+        <div id="mapid"></div>
+      </div>
+        
     </div>
   </div>
 </div>
