@@ -2,3 +2,9 @@
 .white-text{
   color: white !important;
 }
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -4,42 +4,60 @@
       <div class="alert alert-info">
         Votre prénom et votre nom ne seront pas affichés sur votre témoignage si vous cliquez sur l'option "anonyme" lors de l'ajout de celui-ci
       </div>
-      <h2>Inscription</h2>
-      <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <label for="username">Nom d'utilisateur</label>
-          <input type="text" class="form-control" name="username" [(ngModel)]="newuser.username" #username="ngModel" required />
-          <div *ngIf="f.submitted && !username.valid" class="help-block">Le nom d'utilisateur est obligatoire</div>
+      <div class="row">
+        <div *ngIf="success != ''" class="alert alert-success alert-dismissible flex" role="alert">
+          <div id="msg-success">{{ success }}</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
-          <label for="firstname">Prénom</label>
-          <input type="text" class="form-control" name="firstname" [(ngModel)]="newuser.firstname" #firstname="ngModel" required />
-          <div *ngIf="f.submitted && !firstname.valid" class="help-block">Le prénom est obligatoire</div>
+      </div>
+      <div class="row">
+        <div *ngIf="error != ''" class="alert alert-danger alert-dismissible flex" role="alert">
+          <div id="msg-danger">{{ error }}</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
-          <label for="lastname">Nom</label>
-          <input type="text" class="form-control" name="lastname" [(ngModel)]="newuser.lastname" #lastname="ngModel" required />
-          <div *ngIf="f.submitted && !lastname.valid" class="help-block">Le nom est obligatoire</div>
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de Passe</label>
-          <input type="password" class="form-control" name="password" [(ngModel)]="newuser.password" #password="ngModel" required />
-          <div *ngIf="f.submitted && !password.valid" class="help-block">Le mot de passe est obligatoire</div>
-        </div>
-        <div class="form-group">
-          <label for="passwordConf">Confirmer mot de Passe</label>
-          <input type="password" class="form-control" name="passwordConf" #passwordConf required />
-          <div *ngIf="f.submitted && passwordConf.value != password.value" class="help-block">Les mots de passe doivent correspondre</div>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" [(ngModel)]="newuser.email" #email="ngModel" required />
-          <div *ngIf="f.submitted && !email.valid" class="help-block">Email est obligatoire</div>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-org" type="submit">Inscription</button>
-        </div>
-      </form>
+      </div>
+      <div *ngIf="displayForm" class="row">
+        <h2>Inscription</h2>
+        <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="newuser.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Le nom d'utilisateur est obligatoire</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+            <label for="firstname">Prénom</label>
+            <input type="text" class="form-control" name="firstname" [(ngModel)]="newuser.firstname" #firstname="ngModel" required />
+            <div *ngIf="f.submitted && !firstname.valid" class="help-block">Le prénom est obligatoire</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+            <label for="lastname">Nom</label>
+            <input type="text" class="form-control" name="lastname" [(ngModel)]="newuser.lastname" #lastname="ngModel" required />
+            <div *ngIf="f.submitted && !lastname.valid" class="help-block">Le nom est obligatoire</div>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de Passe</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="newuser.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Le mot de passe est obligatoire</div>
+          </div>
+          <div class="form-group">
+            <label for="passwordConf">Confirmer mot de Passe</label>
+            <input type="password" class="form-control" name="passwordConf" #passwordConf required />
+            <div *ngIf="f.submitted && passwordConf.value != password.value" class="help-block">Les mots de passe doivent correspondre</div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="newuser.email" #email="ngModel" required />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email est obligatoire</div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-org" type="submit">Inscription</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
