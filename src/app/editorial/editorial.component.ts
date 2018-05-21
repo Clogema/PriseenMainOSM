@@ -14,7 +14,7 @@ export class EditorialComponent implements OnInit {
   public user: User;
   testimony: any = {};
   error = "";
-  mymap : any;
+  mymap: any;
   marker = {};
   latitude;
   longitude;
@@ -31,13 +31,11 @@ export class EditorialComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.mymap = L.map("mapid", {
       center: [43.45267, 5.46163],
       zoom: 11
     });
-    
-    
+
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
       attribution: "My Map"
     }).addTo(this.mymap);
@@ -50,10 +48,9 @@ export class EditorialComponent implements OnInit {
             "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
         }
       ),
-    plan = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+      plan = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
         attribution: "My Map"
-    });
-
+      });
 
     const baseMaps = {
       Satellite: satellite,
@@ -63,8 +60,8 @@ export class EditorialComponent implements OnInit {
     L.control.layers(baseMaps).addTo(this.mymap);
 
     this.mymap.on("click", e => {
-      this.onClick(e)
-    });    
+      this.onClick(e);
+    });
   }
 
   changeLongLat(longitude, latitude) {
@@ -72,23 +69,20 @@ export class EditorialComponent implements OnInit {
     this.testimony.latitude = latitude;
   }
 
+  public onClick(e) {
+    const latlong = e.latlng.toString();
 
-  public onClick(e){
-    
-    var latlong = e.latlng.toString();
+    let lat, long: any;
 
-    var lat, long: any;
-
-    long = latlong.substring(latlong.indexOf(",")+2,latlong.indexOf(")"));
-    lat = latlong.substring(latlong.indexOf("(")+1,latlong.indexOf(","));
+    long = latlong.substring(latlong.indexOf(",") + 2, latlong.indexOf(")"));
+    lat = latlong.substring(latlong.indexOf("(") + 1, latlong.indexOf(","));
 
     const iconMarker = L.icon({
       iconUrl:
         "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
     });
 
-    
-    if(this.marker !== undefined) {
+    if (this.marker !== undefined) {
       this.mymap.removeLayer(this.marker);
     }
 
@@ -99,10 +93,9 @@ export class EditorialComponent implements OnInit {
       radius: 20
     }).addTo(this.mymap);
 
-
     this.changeLongLat(lat, long);
   }
-  
+
   getTestimony() {
     console.log("getTestimony");
     this.editorial.post(this.testimony).subscribe(

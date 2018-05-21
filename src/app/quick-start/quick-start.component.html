@@ -67,12 +67,13 @@
     <br *ngIf="testimonyOnMap">
     <br *ngIf="testimonyOnMap">
 
-    <button data-target="#crassier" *ngIf="crassiersOnMap" class="btn btn-org btn-block btn-lg" data-toggle="collapse">Crassiers
+    <button data-target="#crassier" *ngIf="crassiersOnMap" class="btn btn-org btn-block btn-lg" data-toggle="collapse">Crassiers / CSDU
       <span class="caret"></span>
     </button>
     <div id="crassier" *ngIf="crassiersOnMap" class="collapse in pre-scrollable">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let crassier of crassiers" (click)="centerOnCrassiers(crassier)">{{ crassier.nom }}</li>
+        <li class="list-group-item" *ngFor="let c of csdu" (click)="centerOnCsdu(c)">{{ c.nom }}</li>
       </ul>
     </div>
     <br *ngIf="crassiersOnMap">

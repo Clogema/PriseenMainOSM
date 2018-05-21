@@ -24,6 +24,7 @@ export class QuickStartComponent implements OnInit {
   crassiersOnMap = true;
   conduiteOnMap = true;
 
+  csdu: any;
   crassiers: any;
   testimony: any;
   testimonies: any[];
@@ -38,6 +39,7 @@ export class QuickStartComponent implements OnInit {
 
     this.getConduite();
     this.getCrassiers();
+    this.getCSDU();
     this.getTestimonies();
     this.testimonies = [];
 
@@ -71,7 +73,7 @@ export class QuickStartComponent implements OnInit {
     const overlayMaps = {
       "<span style='color: blue'>Témoignages</span>": this.testimonyLayer,
       "<span style='color: red'>Crassiers</span>": this.crassiersLayer,
-      "<span style='color: green'>Conduite</span>": this.conduiteLayer
+      "<span style='color: red'>Conduite</span>": this.conduiteLayer
     };
 
     L.control.layers(baseMaps, overlayMaps).addTo(this.myMap);
@@ -122,6 +124,8 @@ export class QuickStartComponent implements OnInit {
       const crassiers = result.crassiers;
       this.crassiers = crassiers;
 
+      console.log(this.crassiers);
+
       for (const crassier of crassiers) {
         // ajouter un marker pour chaque crassier
         const iconMarker = L.icon({
@@ -132,10 +136,38 @@ export class QuickStartComponent implements OnInit {
         const circle = L.circle(crassier.pos, {
           color: "red",
           fillColor: "red",
-          fillOpacity: 0.5,
+          fillOpacity: 0.8,
           radius: crassier.radius ? crassier.radius : 300
         }).addTo(this.crassiersLayer);
         circle.bindTooltip(crassier.nom);
+        circle.bindPopup(
+          "<b>" + crassier.nom + "</b><br>" + crassier.description
+        );
+      }
+    });
+  }
+
+  public getCSDU() {
+    this.http.get<any>("/assets/data.json").subscribe(result => {
+      const csdu = result.csdu;
+      this.csdu = csdu;
+
+      console.log(this.csdu);
+
+      for (const c of csdu) {
+        // ajouter un marker pour chaque crassier
+        const iconMarker = L.icon({
+          iconUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
+        });
+
+        const circle = L.circle(c.pos, {
+          color: "red",
+          fillColor: "red",
+          fillOpacity: 0.3,
+          radius: c.radius ? c.radius : 300
+        }).addTo(this.crassiersLayer);
+        circle.bindTooltip(c.nom);
       }
     });
   }
@@ -150,9 +182,31 @@ export class QuickStartComponent implements OnInit {
 
   public centerOnTestimony(obj: any) {
     this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 15);
+    L.popup()
+      .setLatLng([obj.longitude, obj.latitude])
+      .setContent(
+        "<b>" +
+          obj.title +
+          "</b><br>" +
+          obj.description +
+          "<br> <div align='right'><i>" +
+          (obj.id_user ? obj.id_user : "Anonyme") +
+          ", " +
+          obj.annee.substr(0, 10) +
+          "</i></div>"
+      )
+      .openOn(this.myMap);
   }
 
   public centerOnCrassiers(obj: any) {
+    this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 12);
+    L.popup()
+      .setLatLng([obj.pos[0], obj.pos[1]])
+      .setContent("<b>" + obj.nom + "</b><br>" + obj.description)
+      .openOn(this.myMap);
+  }
+
+  public centerOnCsdu(obj: any) {
     this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 12);
   }
 
@@ -161,7 +215,7 @@ export class QuickStartComponent implements OnInit {
       const latlngs = result.conduite;
 
       // ajouter un polygone
-      const conduite = L.polyline(latlngs, { color: "green" }).addTo(
+      const conduite = L.polyline(latlngs, { color: "red" }).addTo(
         this.conduiteLayer
       );
       conduite.bindTooltip("Conduite Alteo");
@@ -176,7 +230,7 @@ export class QuickStartComponent implements OnInit {
     if (name === "<span style='color: red'>Crassiers</span>") {
       this.crassiersOnMap = true;
     }
-    if (name === "<span style='color: green'>Conduite</span>") {
+    if (name === "<span style='color: red'>Conduite</span>") {
       this.conduiteOnMap = true;
     }
   }
@@ -189,7 +243,7 @@ export class QuickStartComponent implements OnInit {
     if (name === "<span style='color: red'>Crassiers</span>") {
       this.crassiersOnMap = false;
     }
-    if (name === "<span style='color: green'>Conduite</span>") {
+    if (name === "<span style='color: red'>Conduite</span>") {
       this.conduiteOnMap = false;
     }
   }
