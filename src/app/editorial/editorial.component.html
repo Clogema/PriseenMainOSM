@@ -22,20 +22,15 @@
           <label for="longitude">Longitude</label>
           <input type="number" class="form-control" name="longitude" [(ngModel)]="testimony.longitude" #longitude="ngModel" disabled
           />
-          <div *ngIf="f.submitted && !longitude.valid" class="help-block">La longitude est obligatoire</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !latitude.valid }">
           <label for="latitude">Latitude</label>
           <input type="number" class="form-control" name="latitude" [(ngModel)]="testimony.latitude" #latitude="ngModel" disabled />
-          <div *ngIf="f.submitted && !latitude.valid" class="help-block">La latitude est obligatoire</div>
         </div>
-
-        
-        
 
         <div class="checkbox">
           <label for="anonym">
-          <input type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" value="false" />Anonyme</label>
+            <input type="checkbox" name="anonym" [(ngModel)]="testimony.anonym" #anonym="ngModel" value="false" />Anonyme</label>
         </div>
         <div class="form-group">
           <button class="btn btn-org">Enregistrer</button>
@@ -46,13 +41,13 @@
       </form>
     </div>
     <div class="col-sm-6">
-        <div class="alert alert-info">
-            Cliquez sur la carte pour choisir l'emplacement de votre témoignage
-        </div>
+      <div class="alert alert-info">
+        Cliquez sur la carte pour choisir l'emplacement de votre témoignage
+      </div>
       <div>
         <div id="mapid"></div>
       </div>
-        
+
     </div>
   </div>
 </div>

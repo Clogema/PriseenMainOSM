@@ -65,25 +65,52 @@
       "user": 4
     }
   ],
-  "csdu": [{}],
+  "csdu": [
+    {
+      "nom": "Septèmes les Vallons",
+      "description": "okok",
+      "pos": [43.3841528, 5.3936707],
+      "radius": 500
+    },
+    {
+      "nom": "Vautubière",
+      "description": "okok",
+      "pos": [43.5655318, 5.2184752],
+      "radius": 450
+    },
+    {
+      "nom": "Le Mentaure",
+      "description": "okok",
+      "pos": [43.212142, 5.5943565],
+      "radius": 350
+    }
+  ],
   "crassiers": [
     {
       "nom": "Vitrolles",
+      "description":
+        "Ce dépôt de résidus - boues rouges - est issu de la production de l'usine d'alumine des Aygalades située à Marseille (Exploité par la SFIA). Les boues déshydratées (extraction par un filtre presse) étaient transportées par camion depuis l'usine et bennées du haut de la falaise générant un cone d'épandage d'une surface de 18 hectares.",
       "pos": [43.440891, 5.299717],
       "radius": 350
     },
     {
       "nom": "Gardanne",
+      "description":
+        "Ce dépôt de résidus - boues rouges - issu de la production d'alumine à partir de bauxite, mis en service en 1903, est toujours en activité (lié à l'usine de Gardanne). il se situe sur la commune de Bouc-Bel-Air. Exploité par le groupe Pechiney depuis l'origine jusqu'en 2004, date de son rachat par le groupe Alcan, il est maintenant depuis 2007 propriété du Groupe Rio Tinto.",
       "pos": [43.465515, 5.435686],
       "radius": 600
     },
     {
       "nom": "Aygalades",
+      "description":
+        "Ce site est un dépôt des résidus - boues rouges - de la production d'alumine à partir de bauxite de l'usine des Aygalades dans le 15ème arrondissement de Marseille. Le dépôt a recu des résidus de 1906 à 1953. Il se présente sous la forme d'une butte d'une surface de 5 hectares, de 10 à 15m de hauteur.",
       "pos": [43.340556, 5.364444],
       "radius": 200
     },
     {
       "nom": "La barasse",
+      "description":
+        "Ce site contient les résidus de la production d'alumine à partir de bauxite - boues rouges - de l'usine de La Barasse fermée dans les années 1980. Il est situé à proximité de l'ancienne usine dans le 11ème arrondissement de Marseille. Il a été exploité de 1908 à 1947.",
       "pos": [43.272849, 5.480874],
       "radius": 600
     }
