@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(["/quick"]);
           } else {
             // login failed
-            this.error = "Username or password is incorrect";
+            this.error = "Username ou mot de passe incorrect";
             this.loading = false;
           }
         },
         error => {
           console.error(error);
-          this.error = "Username or password is incorrect";
+          this.error = "Username ou mot de passe incorrect";
           this.loading = false;
         }
       );
