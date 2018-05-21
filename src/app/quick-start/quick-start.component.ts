@@ -91,7 +91,7 @@ export class QuickStartComponent implements OnInit {
       for (const test of response) {
         console.log(test);
         this.testimonies.push(test);
-        // ajouter un marker pour chaque crassier
+        // ajouter un marker pour chaque témoignage
         const iconMarker = L.icon({
           iconUrl:
             "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png"
@@ -110,9 +110,9 @@ export class QuickStartComponent implements OnInit {
             "</b><br>" +
             test.description +
             "<br> <div align='right'><i>" +
-            (test.id_user ? test.id_user : "Anonyme") +
+            (test.username ? test.username : "Anonyme") +
             ", " +
-            test.annee.substr(0, 10) +
+            (new Date(test.annee)).toLocaleDateString() +
             "</i></div>"
         );
       }
@@ -182,6 +182,7 @@ export class QuickStartComponent implements OnInit {
 
   public centerOnTestimony(obj: any) {
     this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 15);
+    let date = new Date();
     L.popup()
       .setLatLng([obj.longitude, obj.latitude])
       .setContent(
@@ -190,9 +191,9 @@ export class QuickStartComponent implements OnInit {
           "</b><br>" +
           obj.description +
           "<br> <div align='right'><i>" +
-          (obj.id_user ? obj.id_user : "Anonyme") +
+          (obj.username ? obj.username : "Anonyme") +
           ", " +
-          obj.annee.substr(0, 10) +
+          (new Date(obj.annee)).toLocaleDateString() +
           "</i></div>"
       )
       .openOn(this.myMap);
