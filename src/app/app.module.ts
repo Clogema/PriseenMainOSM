@@ -32,13 +32,13 @@ const appRoutes: Routes = [
   { path: "logout", component: LogoutComponent },
   { path: "signup", component: SignupComponent },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: "", component: AppComponent },
+  { path: "", component: QuickStartComponent },
   {
     path: "editorial",
     component: EditorialComponent,
     canActivate: [AuthGuard]
-  },
-  { path: "**", redirectTo: "" }
+  }
+  // { path: "**", redirectTo: "quick" }
 ];
 
 @NgModule({
