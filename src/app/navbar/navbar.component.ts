@@ -1,17 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import * as L from "leaflet";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"]
 })
-export class AppComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   currentUser: any = null;
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     // console.log("USER = " + this.currentUser.username);
-    console.log("APP COMPONENT");
+    console.log("JE PASSE ICI");
   }
 }
