@@ -10,14 +10,14 @@ import { ActivatedRoute } from "@angular/router";
 export class AppComponent implements OnInit {
   currentUser: any = null;
 
-  constructor(private route:ActivatedRoute){
-    this.route.params.subscribe((val) => {
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(val => {
       console.log("Params: ", val);
-    })
+    });
   }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    console.log("On init called: " , this.currentUser);
+    console.log("On init called: ", this.currentUser);
   }
 }

@@ -23,6 +23,7 @@ import { EditorialComponent } from "./editorial/editorial.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { SignupComponent } from "./signup/signup.component";
 import { AdminComponent } from "./admin/admin.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 
 const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
@@ -31,13 +32,13 @@ const appRoutes: Routes = [
   { path: "logout", component: LogoutComponent },
   { path: "signup", component: SignupComponent },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: "", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "", component: QuickStartComponent },
   {
     path: "editorial",
     component: EditorialComponent,
     canActivate: [AuthGuard]
-  },
-  { path: "**", redirectTo: "" }
+  }
+  // { path: "**", redirectTo: "quick" }
 ];
 
 @NgModule({
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     EditorialComponent,
     LogoutComponent,
     SignupComponent,
-    AdminComponent
+    AdminComponent,
+    NavbarComponent
   ],
   imports: [
     FormsModule,

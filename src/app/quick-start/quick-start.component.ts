@@ -112,7 +112,7 @@ export class QuickStartComponent implements OnInit {
             "<br> <div align='right'><i>" +
             (test.username ? test.username : "Anonyme") +
             ", " +
-            (new Date(test.annee)).toLocaleDateString() +
+            new Date(test.annee).toLocaleDateString() +
             "</i></div>"
         );
       }
@@ -182,7 +182,7 @@ export class QuickStartComponent implements OnInit {
 
   public centerOnTestimony(obj: any) {
     this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 15);
-    let date = new Date();
+    const date = new Date();
     L.popup()
       .setLatLng([obj.longitude, obj.latitude])
       .setContent(
@@ -193,7 +193,7 @@ export class QuickStartComponent implements OnInit {
           "<br> <div align='right'><i>" +
           (obj.username ? obj.username : "Anonyme") +
           ", " +
-          (new Date(obj.annee)).toLocaleDateString() +
+          new Date(obj.annee).toLocaleDateString() +
           "</i></div>"
       )
       .openOn(this.myMap);
