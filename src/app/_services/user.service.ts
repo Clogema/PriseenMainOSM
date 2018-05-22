@@ -51,4 +51,10 @@ export class UserService {
       .get("http://localhost/oauth/examples/public/api.php/users/validate")
       .map((response: User[]) => response);
   }
+
+  signup(user:any): Observable<any> {
+    return this.http
+      .post("http://localhost/oauth/examples/public/register.php", user)
+      .map((response: any) => { return response });
+  }
 }

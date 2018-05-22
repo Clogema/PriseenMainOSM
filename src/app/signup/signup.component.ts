@@ -11,8 +11,10 @@ import { Router } from "@angular/router";
 })
 export class SignupComponent implements OnInit {
   public user: User;
-  newuser: User = new User();
+  public newuser: User;
   error = "";
+  success = "";
+  private displayForm:Boolean = true;
 
   constructor(
     private http: HttpClient,
@@ -20,19 +22,23 @@ export class SignupComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.newuser = new User();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   signup() {
-    console.log("Signup called");
-    const data = {
-      username: this.newuser.username,
-      password: this.newuser.password,
-      email: this.newuser.email,
-      firstname: this.newuser.firstname,
-      lastname: this.newuser.lastname
-    };
+    return this.userService.signup(this.newuser).subscribe((response: any) => {
+      if (response.status == "success") {
+        this.success = "Inscription réussie ! Veuillez attendre la validation de votre compte par un administrateur";
+        this.displayForm = false;
+      } else if (response.msg) {
+        this.error = response.msg
+      } else {
+        this.error = "Erreur lors de l'inscription, veuillez réessayer";
+      }
+    }, (error) => {
+      console.error(error);
+    });
   }
 }

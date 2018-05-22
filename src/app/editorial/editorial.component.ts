@@ -97,7 +97,6 @@ export class EditorialComponent implements OnInit {
   }
 
   getTestimony() {
-    console.log("getTestimony");
     this.editorial.post(this.testimony).subscribe(
       (response: boolean) => {
         if (response) {

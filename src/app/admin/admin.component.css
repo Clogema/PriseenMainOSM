@@ -2,13 +2,6 @@
   color: black;
 }
 
-
-ul > li {
+table {
   color: black;
-}
-
-.flex{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

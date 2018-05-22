@@ -23,19 +23,40 @@
       <div class="panel panel-default">
         <div class="panel-heading">Utilisateurs à valider</div>
         <div *ngIf="users.length" class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item flex" *ngFor="let user of users">
-              <div>{{ user.firstname }} {{ user.lastname.toUpperCase() }}</div>
-              <div class="button">
-                <button (click)="validateUser(user)" type="button" class="btn btn-default btn-success" aria-label="Ok">
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                </button>
-                <button (click)="deleteUser(user)" type="button" class="btn btn-default btn-danger" aria-label="Close">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button>
-              </div>
-            </li>
-          </ul>
+          <div class="row">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Prénom</th>
+                  <th>Nom</th>
+                  <th>E-mail</th>
+                  <th>Date</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.firstname }}</td>
+                  <td>{{ user.lastname.toUpperCase() }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.created|date : "dd/MM/yy" }}</td>
+                  <td>
+                    <button (click)="validateUser(user)" type="button" class="btn btn-default btn-success" aria-label="Ok">
+                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <button (click)="deleteUser(user)" type="button" class="btn btn-default btn-danger" aria-label="Close">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div *ngIf="!users.length">
           <ul class="list-group">
@@ -51,7 +72,7 @@
           <ul class="list-group">
             <li *ngFor="let testimony of testimonies" class="list-group-item">
               <div class="list-group">
-                <div href="#!" class="list-group-item active">
+                <div class="list-group-item active">
                   <h4 class="list-group-item-heading flex">
                     <div>
                       {{ testimony.title }}
@@ -69,7 +90,7 @@
                     <p>{{ testimony.description }}</p>
                     <hr/>
                     <p><i>{{ (testimony.id_user != null) ? testimony.id_user : 'Anonyme' }} -
-                    <small class="white-text">{{ testimony.annee.substring(0,10) }}</small></i></p>
+                    <small class="white-text">{{ testimony.annee|date : "dd/MM/yy" }}</small></i></p>
                   </div>
                 </div>
               </div>
