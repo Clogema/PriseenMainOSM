@@ -22,20 +22,20 @@ export class EditorialService {
       .map((response: Testimony[]) => response);
   }
 
-  validate(testimony: Testimony) {
+  validate(testimony: any) {
     console.log(testimony);
     return this.http
       .post(
         "http://localhost/oauth/examples/public/api.php/testimony/validate",
-        { id: testimony.id }
+        { id: testimony.id_testimony }
       )
       .map((response: any) => response);
   }
 
-  delete(testimony: Testimony) {
+  delete(testimony: any) {
     return this.http
       .post("http://localhost/oauth/examples/public/api.php/testimony/delete", {
-        id: testimony.id
+        id: testimony.id_testimony
       })
       .map((response: any) => response);
   }

@@ -41,7 +41,7 @@
                   <td>{{ user.username }}</td>
                   <td>{{ user.firstname }}</td>
                   <td>{{ user.lastname.toUpperCase() }}</td>
-                  <td>{{ user.email }}</td>
+                  <td>{{ (user.email.length>6)? (user.email | slice:0:6)+'..':(user.email) }}</td>
                   <td>{{ user.created|date : "dd/MM/yy" }}</td>
                   <td>
                     <button (click)="validateUser(user)" type="button" class="btn btn-default btn-success" aria-label="Ok">
@@ -89,7 +89,7 @@
                   <div class="list-group-item-text">
                     <p>{{ testimony.description }}</p>
                     <hr/>
-                    <p><i>{{ (testimony.id_user != null) ? testimony.id_user : 'Anonyme' }} -
+                    <p><i>{{ (testimony.username != null) ? testimony.username : 'Anonyme' }} -
                     <small class="white-text">{{ testimony.annee|date : "dd/MM/yy" }}</small></i></p>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ import { User, Testimony } from "../_models";
 })
 export class AdminComponent implements OnInit {
   users: User[];
-  testimonies: Testimony[];
+  testimonies: any;
 
   error = "";
   success = "";
@@ -24,23 +24,23 @@ export class AdminComponent implements OnInit {
     this.getTestimoniesToValidate();
   }
 
-  validateTestimony(testimony: Testimony) {
+  validateTestimony(testimony: any) {
     this.editorial.validate(testimony).subscribe((response: any) => {
       console.log(response);
       if (response.status === "success") {
         this.success = "Témoignage validé avec succès";
-        this.testimonies = this.testimonies.filter(x => x.id !== testimony.id);
+        this.testimonies = this.testimonies.filter(x => x.id_testimony !== testimony.id_testimony);
       } else {
         this.error = "Echec de la validation du témoignage";
       }
     });
   }
 
-  deleteTestimony(testimony: Testimony) {
+  deleteTestimony(testimony: any) {
     this.editorial.delete(testimony).subscribe((response: any) => {
       console.log(response);
       if (response.status === "success") {
-        this.testimonies = this.testimonies.filter(x => x.id !== testimony.id);
+        this.testimonies = this.testimonies.filter(x => x.id_testimony !== testimony.id_testimony);
         this.success = "Témoignage supprimé avec succès";
       } else {
         this.error = "Echec de la suppression du témoignage";
