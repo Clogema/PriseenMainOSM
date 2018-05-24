@@ -26,7 +26,6 @@ export class AdminComponent implements OnInit {
 
   validateTestimony(testimony: any) {
     this.editorial.validate(testimony).subscribe((response: any) => {
-      console.log(response);
       if (response.status === "success") {
         this.success = "Témoignage validé avec succès";
         this.testimonies = this.testimonies.filter(x => x.id_testimony !== testimony.id_testimony);
@@ -38,7 +37,6 @@ export class AdminComponent implements OnInit {
 
   deleteTestimony(testimony: any) {
     this.editorial.delete(testimony).subscribe((response: any) => {
-      console.log(response);
       if (response.status === "success") {
         this.testimonies = this.testimonies.filter(x => x.id_testimony !== testimony.id_testimony);
         this.success = "Témoignage supprimé avec succès";
@@ -52,14 +50,12 @@ export class AdminComponent implements OnInit {
     this.editorial
       .getTestimoniesToValidate()
       .subscribe((response: Testimony[]) => {
-        console.log(response);
         this.testimonies = response;
       });
   }
 
   validateUser(user: User) {
     this.user.validate(user).subscribe((response: any) => {
-      console.log(response);
       if (response.status === "success") {
         this.success = "Utilisateur validé avec succès";
         this.users = this.users.filter(x => x.id !== user.id);
@@ -71,7 +67,6 @@ export class AdminComponent implements OnInit {
 
   deleteUser(user: User) {
     this.user.delete(user).subscribe((response: any) => {
-      console.log(response);
       if (response.status === "success") {
         this.users = this.users.filter(x => x.id !== user.id);
         this.success = "Utilisateur supprimé avec succès";
@@ -83,7 +78,6 @@ export class AdminComponent implements OnInit {
 
   getUsersToValidate() {
     this.user.getUsersToValidate().subscribe((response: User[]) => {
-      console.log("Getting users...");
       this.users = response;
     });
   }

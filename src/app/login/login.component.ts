@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
       .login(this.model.username, this.model.password)
       .subscribe(
         (result: boolean) => {
-          console.log(result);
           if (result === true) {
             // login successful
             this.authenticationService.getUser(this.model.username);
-            this.router.navigate([""]);
+            //this.router.navigate([""]);
+            //window.location.href = "/quick";
           } else {
             // login failed
             this.error = "Username ou mot de passe incorrect";

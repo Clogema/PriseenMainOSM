@@ -32,7 +32,6 @@ export class QuickStartComponent implements OnInit {
   constructor(private http: HttpClient, private editorial: EditorialService) {}
 
   ngOnInit() {
-    console.log(this.testimonyOnMap);
     this.testimonyLayer = L.layerGroup();
     this.crassiersLayer = L.layerGroup();
     this.conduiteLayer = L.layerGroup();
@@ -89,7 +88,6 @@ export class QuickStartComponent implements OnInit {
   public getTestimonies() {
     this.editorial.get().subscribe((response: any) => {
       for (const test of response) {
-        console.log(test);
         this.testimonies.push(test);
         // ajouter un marker pour chaque témoignage
         const iconMarker = L.icon({
@@ -124,7 +122,6 @@ export class QuickStartComponent implements OnInit {
       const crassiers = result.crassiers;
       this.crassiers = crassiers;
 
-      console.log(this.crassiers);
 
       for (const crassier of crassiers) {
         // ajouter un marker pour chaque crassier
@@ -152,7 +149,6 @@ export class QuickStartComponent implements OnInit {
       const csdu = result.csdu;
       this.csdu = csdu;
 
-      console.log(this.csdu);
 
       for (const c of csdu) {
         // ajouter un marker pour chaque crassier
@@ -226,7 +222,6 @@ export class QuickStartComponent implements OnInit {
   public addLayer(name) {
     if (name === "<span style='color: blue'>Témoignages</span>") {
       this.testimonyOnMap = true;
-      console.log(this.testimonyOnMap);
     }
     if (name === "<span style='color: red'>Crassiers</span>") {
       this.crassiersOnMap = true;
@@ -239,7 +234,6 @@ export class QuickStartComponent implements OnInit {
   public removeLayer(name) {
     if (name === "<span style='color: blue'>Témoignages</span>") {
       this.testimonyOnMap = false;
-      console.log(this.testimonyOnMap);
     }
     if (name === "<span style='color: red'>Crassiers</span>") {
       this.crassiersOnMap = false;
@@ -250,12 +244,10 @@ export class QuickStartComponent implements OnInit {
   }
 
   public onOverlayAdd(e) {
-    console.log(e.name);
     this.addLayer(e.name);
   }
 
   public onOverlayRemove(e) {
-    console.log(e.name);
     this.removeLayer(e.name);
   }
 }

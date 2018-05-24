@@ -29,7 +29,6 @@ export class EditorialService {
   }
 
   validate(testimony: any) {
-    console.log(testimony);
     return this.http
       .post(
         "http://localhost/oauth/examples/public/api.php/testimony/validate",

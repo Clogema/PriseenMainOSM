@@ -29,7 +29,6 @@ const appRoutes: Routes = [
   { path: "layer", component: LayerComponent },
   { path: "quick", component: QuickStartComponent },
   { path: "login", component: LoginComponent },
-  { path: "logout", component: LogoutComponent },
   { path: "signup", component: SignupComponent },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "", component: QuickStartComponent },

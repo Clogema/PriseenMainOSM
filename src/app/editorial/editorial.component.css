@@ -12,3 +12,7 @@
   height: 400px; 
   margin-top: 20px;
 }
+
+label, h2{
+  color: white !important;
+}
