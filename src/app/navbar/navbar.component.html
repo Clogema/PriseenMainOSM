@@ -16,7 +16,7 @@
       </li>
       <li *ngIf="!currentUser">
         <a href="/login ">Se connecter
-          <span class="glyphicon glyphicon-user"></span>
+          <span class="glyphicon glyphicon-log-in"></span>
         </a>
       </li>
       <li *ngIf="!currentUser">
@@ -30,7 +30,9 @@
         </a>
       </li>
       <li *ngIf="currentUser">
-        <a href="/logout ">Se déconnecter</a>
+        <a href="/logout ">Se déconnecter
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
       </li>
     </ul>
   </div>
