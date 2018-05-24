@@ -55,8 +55,8 @@
         <div id="collapse3" class="panel-collapse collapse">
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
-              <ng-container *ngFor="let test of testimony">
-                <li class="list-group-item" *ngIf="test.annee <= 2016" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              <ng-container *ngFor="let test of testimonies">
+                <li class="list-group-item" *ngIf="test.annee.substring(0,4) <= 2016" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>
