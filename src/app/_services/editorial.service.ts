@@ -14,6 +14,12 @@ export class EditorialService {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
   }
 
+  upload(file: any): Observable<boolean> {
+    return this.http
+      .post("http://localhost/oauth/examples/public/upload.php", file)
+      .map((response:any) => response.status == "success");
+  }
+
   getTestimoniesToValidate(): Observable<Testimony[]> {
     return this.http
       .get(
@@ -54,7 +60,7 @@ export class EditorialService {
       username: this.user.username,
       anonym: testimony.anonym,
       annee: testimony.date,
-      url: "http://localhost/img.png"
+      url: testimony.url
     };
 
     return this.http
