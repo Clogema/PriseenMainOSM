@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { AuthenticationService } from "../_services";
 
 @Component({
   selector: "app-navbar",
@@ -8,9 +9,13 @@ import { Component, OnInit } from "@angular/core";
 export class NavbarComponent implements OnInit {
   currentUser: any = null;
 
+  constructor(private auth: AuthenticationService) {}
+
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    console.log("USER = " + this.currentUser.username);
-    console.log("JE PASSE ICI");
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

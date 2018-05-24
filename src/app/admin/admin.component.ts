@@ -82,7 +82,6 @@ export class AdminComponent implements OnInit {
 
   getUsersToValidate() {
     this.user.getUsersToValidate().subscribe((response: User[]) => {
-      console.log("Getting users...");
       this.users = response;
     });
   }

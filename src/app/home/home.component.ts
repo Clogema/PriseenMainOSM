@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
         this.users = users;
       },
       error => {
-        console.log(error);
         this.auth.logout();
         // tslint:disable-next-line:no-unused-expression
         this.router.navigate["/login"];

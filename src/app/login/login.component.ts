@@ -32,10 +32,8 @@ export class LoginComponent implements OnInit {
           if (result === true) {
             // login successful
             this.authenticationService.getUser(this.model.username);
-            // if (localStorage.getItem("currentUser") !== null) {
-            //   console.log("user : " + localStorage.getItem("currentUser"));
-            //   this.router.navigate(["/quick"]);
-            // }
+            // this.router.navigate([""]);
+            // window.location.href = "/quick";
           } else {
             // login failed
             this.error = "Username ou mot de passe incorrect";

@@ -28,7 +28,8 @@ export class AuthenticationService {
         if (user.id) {
           localStorage.setItem("currentUser", JSON.stringify(user));
         }
-        this.router.navigate(["/quick"]);
+        // this.router.navigate(["/quick"]);
+        window.location.href = "/quick";
         return user.id !== undefined;
       });
   }
@@ -86,7 +87,8 @@ export class AuthenticationService {
 
   logout(): any {
     this.token = null;
-    localStorage.removeItem("currentUser");
-    this.router.navigate(["/"]);
+    localStorage.clear();
+    window.location.href = "/quick";
+    // this.router.navigate(["/"], { replaceUrl: true });
   }
 }

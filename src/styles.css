@@ -8,3 +8,49 @@
   justify-content: space-between !important;
   align-items: center !important;
 }
+
+#frugalmap {
+  height: 800px !important;
+  width: 100% !important;
+}
+
+body {
+  background-color: #123448 !important;
+  color: white;
+}
+
+footer {
+  height: 100px !important;
+}
+
+img {
+  max-width: 20% !important;
+  height: auto !important;
+}
+
+.navbar {
+  padding-top: 10px !important;
+  width: 95% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.margin{
+  margin-right: 10px !important;
+}
+
+.navbar-right,
+a {
+  color: white;
+  margin-right: 20px !important;
+  font-size: 120% !important;
+}
+
+a:hover {
+  color: #123448 !important;
+}
+
+.btn-org {
+  background-color: #ff4900 !important;
+  color: white;
+}
