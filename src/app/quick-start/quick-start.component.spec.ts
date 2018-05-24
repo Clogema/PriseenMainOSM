@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { QuickStartComponent } from './quick-start.component';
+import { QuickStartComponent } from "./quick-start.component";
 
-describe('QuickStartComponent', () => {
+describe("QuickStartComponent", () => {
   let component: QuickStartComponent;
   let fixture: ComponentFixture<QuickStartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuickStartComponent ]
-    })
-    .compileComponents();
+      declarations: [QuickStartComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('QuickStartComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

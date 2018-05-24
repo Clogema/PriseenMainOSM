@@ -1,12 +1,41 @@
 <div class="row container-fluid">
-  <div class="col-sm-2">
+  <div *ngIf="!printTestimony && !printCrassier" class="col-sm-2"></div>
+  <div *ngIf="printTestimony" class="col-sm-2">
     <div class="panel panel-default">
-      <div class="panel-heading">Témoignage ou crassier ou autre</div>
-      <div class="panel-body">Bonne chance Lisa</div>
-      <div></div>
+      <div class="panel-heading">{{ obj.title }}
+        <div class="pull-right">
+          <button type="button" class="btn btn-xs" (click)="printTestimony = false">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">{{ obj.description }}
+        <br>
+        <br>
+        <div class=pull-right>{{ (obj.username ? obj.username : "Anonyme") }},
+          <i>{{ obj.annee.slice(0, -9) }}</i>
+        </div>
+        <img src="../assets/log.png" alt="Logo">
+      </div>
     </div>
   </div>
-  <div class="col-sm-8">
+
+  <div *ngIf="printCrassier" class="col-sm-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{ obj.nom }}
+        <div class="pull-right">
+          <button type="button" class="btn btn-xs" (click)="printCrassier = false">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">{{ obj.description }}
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-7">
     <div id="frugalmap">
     </div>
   </div>

@@ -18,7 +18,9 @@ export class QuickStartComponent implements OnInit {
   crassiersLayer: any;
   conduiteLayer: any;
 
-  test = true;
+  printTestimony = false;
+  printCrassier = false;
+  obj: any;
 
   testimonyOnMap = true;
   crassiersOnMap = true;
@@ -32,6 +34,7 @@ export class QuickStartComponent implements OnInit {
   constructor(private http: HttpClient, private editorial: EditorialService) {}
 
   ngOnInit() {
+    this.printTestimony = false;
     this.testimonyLayer = L.layerGroup();
     this.crassiersLayer = L.layerGroup();
     this.conduiteLayer = L.layerGroup();
@@ -83,6 +86,9 @@ export class QuickStartComponent implements OnInit {
     this.myMap.on("overlayremove", e => {
       this.onOverlayRemove(e);
     });
+    // this.myMap.on("click", e => {
+    //   this.printTestimony = false;
+    // });
   }
 
   public getTestimonies() {
@@ -102,17 +108,14 @@ export class QuickStartComponent implements OnInit {
           radius: 20
         }).addTo(this.testimonyLayer);
         circle.bindTooltip(test.title);
-        circle.bindPopup(
-          "<b>" +
-            test.title +
-            "</b><br>" +
-            test.description +
-            "<br> <div align='right'><i>" +
-            (test.username ? test.username : "Anonyme") +
-            ", " +
-            new Date(test.annee).toLocaleDateString() +
-            "</i></div>"
-        );
+        circle.on("click", e => {
+          this.printCrassier = false;
+          this.printTestimony = true;
+          this.obj = test;
+        });
+
+        console.log(test.title);
+        console.log(test.url);
       }
     });
   }
@@ -136,9 +139,11 @@ export class QuickStartComponent implements OnInit {
           radius: crassier.radius ? crassier.radius : 300
         }).addTo(this.crassiersLayer);
         circle.bindTooltip(crassier.nom);
-        circle.bindPopup(
-          "<b>" + crassier.nom + "</b><br>" + crassier.description
-        );
+        circle.on("click", e => {
+          this.printTestimony = false;
+          this.printCrassier = true;
+          this.obj = crassier;
+        });
       }
     });
   }
@@ -175,34 +180,25 @@ export class QuickStartComponent implements OnInit {
   }
 
   public centerOnTestimony(obj: any) {
+    this.printTestimony = true;
+    this.printCrassier = false;
+    this.obj = obj;
     this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 15);
     const date = new Date();
-    L.popup()
-      .setLatLng([obj.longitude, obj.latitude])
-      .setContent(
-        "<b>" +
-          obj.title +
-          "</b><br>" +
-          obj.description +
-          "<br> <div align='right'><i>" +
-          (obj.username ? obj.username : "Anonyme") +
-          ", " +
-          new Date(obj.annee).toLocaleDateString() +
-          "</i></div>"
-      )
-      .openOn(this.myMap);
   }
 
   public centerOnCrassiers(obj: any) {
-    this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 12);
-    L.popup()
-      .setLatLng([obj.pos[0], obj.pos[1]])
-      .setContent("<b>" + obj.nom + "</b><br>" + obj.description)
-      .openOn(this.myMap);
+    this.printTestimony = false;
+    this.printCrassier = true;
+    this.obj = obj;
+    this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 13);
   }
 
   public centerOnCsdu(obj: any) {
-    this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 12);
+    this.printTestimony = false;
+    this.printCrassier = true;
+    this.obj = obj;
+    this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 13);
   }
 
   public getConduite() {
@@ -239,6 +235,11 @@ export class QuickStartComponent implements OnInit {
     if (name === "<span style='color: red'>Conduite</span>") {
       this.conduiteOnMap = false;
     }
+  }
+
+  public printTestimonyTrue() {
+    console.log("oui");
+    this.printTestimony = true;
   }
 
   public onOverlayAdd(e) {
