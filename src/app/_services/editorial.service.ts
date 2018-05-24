@@ -17,7 +17,7 @@ export class EditorialService {
   upload(file: any): Observable<boolean> {
     return this.http
       .post("http://localhost/oauth/examples/public/upload.php", file)
-      .map((response:any) => response.status == "success");
+      .map((response: any) => response.status === "success");
   }
 
   getTestimoniesToValidate(): Observable<Testimony[]> {
@@ -29,7 +29,6 @@ export class EditorialService {
   }
 
   validate(testimony: any) {
-    console.log(testimony);
     return this.http
       .post(
         "http://localhost/oauth/examples/public/api.php/testimony/validate",

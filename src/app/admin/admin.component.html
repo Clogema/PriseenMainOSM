@@ -89,8 +89,11 @@
                   <div class="list-group-item-text">
                     <p>{{ testimony.description }}</p>
                     <hr/>
-                    <p><i>{{ (testimony.username != null) ? testimony.username : 'Anonyme' }} -
-                    <small class="white-text">{{ testimony.annee|date : "dd/MM/yy" }}</small></i></p>
+                    <p>
+                      <i>{{ (testimony.username != null) ? testimony.username : 'Anonyme' }} -
+                        <small class="white-text">{{ testimony.annee|date : "dd/MM/yy" }}</small>
+                      </i>
+                    </p>
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@ import { FormGroup } from "@angular/forms";
 })
 export class EditorialComponent implements OnInit {
   public user: User;
-  public file:any;
+  public file: any;
   testimony: any = {};
   error = "";
   mymap: any;
@@ -98,24 +98,23 @@ export class EditorialComponent implements OnInit {
     this.changeLongLat(lat, long);
   }
 
-  onFileChange(event){
-    console.log(event);
-    let reader = new FileReader();
+  onFileChange(event) {
+    const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
+      const file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.file = {
           filename: file.name,
           filetype: file.type,
-          value: reader.result.split(',')[1]
-        }
+          value: reader.result.split(",")[1]
+        };
       };
     }
   }
 
   getTestimony() {
-    if (this.file != undefined){
+    if (this.file !== undefined) {
       this.editorial.upload(this.file).subscribe(
         (response: boolean) => {
           if (response) {
@@ -128,7 +127,7 @@ export class EditorialComponent implements OnInit {
           console.error(error);
           this.error = "Erreur lors de l'ajout du témoignage";
         }
-      )
+      );
     }
 
     this.editorial.post(this.testimony).subscribe(

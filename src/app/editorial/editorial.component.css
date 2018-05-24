@@ -3,12 +3,12 @@
   color: white;
 }
 
-.flex{
+.flex {
   display: flex;
   align-items: normal;
 }
 
-#mapid { 
-  height: 400px; 
+#mapid {
+  height: 500px;
   margin-top: 20px;
 }

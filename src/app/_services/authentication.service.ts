@@ -28,7 +28,6 @@ export class AuthenticationService {
         if (user.id) {
           localStorage.setItem("currentUser", JSON.stringify(user));
         }
-        console.log(response);
         this.router.navigate(["/quick"]);
         return user.id !== undefined;
       });

@@ -20,7 +20,8 @@
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !url.valid }">
           <label for="url">Image (optionnel)</label>
-          <input type="file" (change)="onFileChange($event)" name="url" class="form-control form-control-file" id="url" [(ngModel)]="testimony.url" #url="ngModel" />
+          <input type="file" (change)="onFileChange($event)" name="url" class="form-control form-control-file" id="url" [(ngModel)]="testimony.url"
+            #url="ngModel" />
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
           <label for="longitude">Longitude</label>
