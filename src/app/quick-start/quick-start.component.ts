@@ -6,6 +6,7 @@ import {
   HttpHeaders
 } from "@angular/common/http";
 import { EditorialService } from "../_services";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "app-quick-start",
@@ -34,6 +35,7 @@ export class QuickStartComponent implements OnInit {
   constructor(private http: HttpClient, private editorial: EditorialService) {}
 
   ngOnInit() {
+    console.log(environment);
     this.printTestimony = false;
     this.testimonyLayer = L.layerGroup();
     this.crassiersLayer = L.layerGroup();

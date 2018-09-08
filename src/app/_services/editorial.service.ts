@@ -5,6 +5,7 @@ import { of } from "rxjs/observable/of";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { AuthenticationService } from "./authentication.service";
 import { User, Testimony } from "../_models";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class EditorialService {
@@ -16,14 +17,14 @@ export class EditorialService {
 
   upload(file: any): Observable<boolean> {
     return this.http
-      .post("http://localhost/oauth/examples/public/upload.php", file)
+      .post(environment.base_api+"/public/upload.php", file)
       .map((response: any) => response.status === "success");
   }
 
   getTestimoniesToValidate(): Observable<Testimony[]> {
     return this.http
       .get(
-        "http://localhost/oauth/examples/public/api.php/testimonies/validate"
+        environment.base_api+"/public/api.php/testimonies/validate"
       )
       .map((response: Testimony[]) => response);
   }
@@ -31,7 +32,7 @@ export class EditorialService {
   validate(testimony: any) {
     return this.http
       .post(
-        "http://localhost/oauth/examples/public/api.php/testimony/validate",
+        environment.base_api+"/public/api.php/testimony/validate",
         { id: testimony.id_testimony }
       )
       .map((response: any) => response);
@@ -39,7 +40,7 @@ export class EditorialService {
 
   delete(testimony: any) {
     return this.http
-      .post("http://localhost/oauth/examples/public/api.php/testimony/delete", {
+      .post(environment.base_api+"/public/api.php/testimony/delete", {
         id: testimony.id_testimony
       })
       .map((response: any) => response);
@@ -64,7 +65,7 @@ export class EditorialService {
 
     return this.http
       .post(
-        "http://localhost/oauth/examples/public/api.php/editorial/add",
+        environment.base_api+"/public/api.php/editorial/add",
         data,
         { headers, observe: "response" }
       )
@@ -79,7 +80,7 @@ export class EditorialService {
 
   get(): any {
     return this.http.get(
-      "http://localhost/oauth/examples/public/editorial/get.php"
+      environment.base_api+"/public/editorial/get.php"
     );
   }
 }
