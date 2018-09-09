@@ -6,6 +6,7 @@ import "rxjs/add/operator/map";
 
 import { AuthenticationService } from "../_services/authentication.service";
 import { User } from "../_models";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,7 @@ export class UserService {
 
   validate(user: User) {
     return this.http
-      .post("http://localhost/oauth/examples/public/api.php/user/validate", {
+      .post(environment.base_api+"public/api.php/user/validate", {
         id: user.id
       })
       .map((response: any) => response);
@@ -24,7 +25,7 @@ export class UserService {
 
   delete(user: User) {
     return this.http
-      .post("http://localhost/oauth/examples/public/api.php/user/delete", {
+      .post(environment.base_api+"public/api.php/user/delete", {
         id: user.id
       })
       .map((response: any) => response);
@@ -42,19 +43,19 @@ export class UserService {
 
     // get users from api
     return this.http
-      .get("http://localhost/oauth/examples/public/api.php/users")
+      .get(environment.base_api+"public/api.php/users")
       .map((response: Response) => response);
   }
 
   getUsersToValidate(): Observable<User[]> {
     return this.http
-      .get("http://localhost/oauth/examples/public/api.php/users/validate")
+      .get(environment.base_api+"public/api.php/users/validate")
       .map((response: User[]) => response);
   }
 
   signup(user:any): Observable<any> {
     return this.http
-      .post("http://localhost/oauth/examples/public/register.php", user)
+      .post(environment.base_api+"public/register.php", user)
       .map((response: any) => { return response });
   }
 }

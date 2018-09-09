@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
   public newuser: User;
   error = "";
   success = "";
-  private displayForm:Boolean = true;
+  public displayForm:Boolean = true;
 
   constructor(
     private http: HttpClient,

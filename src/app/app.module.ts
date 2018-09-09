@@ -26,6 +26,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 
 const appRoutes: Routes = [
+  { path: "", redirectTo: "/quick", pathMatch: "full"},
   { path: "layer", component: LayerComponent },
   { path: "quick", component: QuickStartComponent },
   { path: "login", component: LoginComponent },

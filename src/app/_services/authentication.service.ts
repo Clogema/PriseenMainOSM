@@ -6,6 +6,7 @@ import { of } from "rxjs/observable/of";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "../_models";
 import { Router } from "@angular/router";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class AuthenticationService {
@@ -19,7 +20,7 @@ export class AuthenticationService {
 
   getUser(username: string): any {
     return this.http
-      .post("http://localhost/oauth/examples/public/api.php/user", {
+      .post(environment.base_api+"public/api.php/user", {
         username: username
       })
       .subscribe((response: any) => {
@@ -58,7 +59,7 @@ export class AuthenticationService {
 
     return this.http
       .post(
-        "http://localhost/oauth/examples/public/client_credentials.php/access_token",
+        environment.base_api+"public/client_credentials.php/access_token",
         encodeURI(form_data),
         { headers: { "Content-type": "application/x-www-form-urlencoded" } }
       )
