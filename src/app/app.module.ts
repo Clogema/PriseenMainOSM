@@ -24,6 +24,7 @@ import { LogoutComponent } from "./logout/logout.component";
 import { SignupComponent } from "./signup/signup.component";
 import { AdminComponent } from "./admin/admin.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { ManageComponent } from './manage/manage.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/quick", pathMatch: "full"},
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
+  { path: "manage", component: ManageComponent, canActivate: [AdminGuard] },
   { path: "", component: QuickStartComponent },
   {
     path: "editorial",
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     LogoutComponent,
     SignupComponent,
     AdminComponent,
-    NavbarComponent
+    NavbarComponent,
+    ManageComponent
   ],
   imports: [
     FormsModule,

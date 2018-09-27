@@ -1,0 +1,23 @@
+.btn-org {
+  background-color: #ff4900;
+  color: white;
+}
+
+.flex {
+  display: flex;
+  align-items: normal;
+}
+
+#mapid {
+  height: 500px;
+  margin-top: 20px;
+}
+
+label,
+h2 {
+  color: white !important;
+}
+
+li {
+  cursor: pointer;
+}

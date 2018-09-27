@@ -46,6 +46,37 @@ export class EditorialService {
       .map((response: any) => response);
   }
 
+  update(testimony): Observable<boolean> {
+    const headers = new HttpHeaders();
+    headers.append("Content-type", "application/x-www-form-urlencoded");
+
+    const form_data = "";
+
+    const data = {
+      title: testimony.title,
+      description: testimony.description,
+      longitude: testimony.longitude,
+      latitude: testimony.latitude,
+      username: this.user.username,
+      annee: testimony.annee,
+      id: testimony.id_testimony
+    };
+
+    return this.http
+      .post(
+        environment.base_api + "public/api.php/editorial/edit",
+        data,
+        { headers, observe: "response" }
+      )
+      .map((response: any) => {
+        if (response.status) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  }
+
   post(testimony): Observable<boolean> {
     const headers = new HttpHeaders();
     headers.append("Content-type", "application/x-www-form-urlencoded");

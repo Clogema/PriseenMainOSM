@@ -21,6 +21,7 @@ export class QuickStartComponent implements OnInit {
 
   printTestimony = false;
   printCrassier = false;
+  printCSDU = false;
   obj: any;
 
   testimonyOnMap = true;
@@ -115,9 +116,6 @@ export class QuickStartComponent implements OnInit {
           this.printTestimony = true;
           this.obj = test;
         });
-
-        console.log(test.title);
-        console.log(test.url);
       }
     });
   }
@@ -240,7 +238,6 @@ export class QuickStartComponent implements OnInit {
   }
 
   public printTestimonyTrue() {
-    console.log("oui");
     this.printTestimony = true;
   }
 
