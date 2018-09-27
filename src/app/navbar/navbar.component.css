@@ -12,6 +12,9 @@ footer {
   height: 100px;
 }
 
+.my-navbar{  
+}
+
 img {
   max-width: 20%;
   height: auto;
@@ -22,6 +25,7 @@ img {
   width: 95%;
   margin-left: auto;
   margin-right: auto;
+  background: transparent;
 }
 
 .margin {

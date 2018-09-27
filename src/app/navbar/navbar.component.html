@@ -1,16 +1,18 @@
 <nav class="navbar navbar-expand-sm">
-  <div class="">
-    <ul class="nav navbar-nav">
-      <li>
-        <div class="navbar-header ">
-          <a class="navbar-left" href="./quick ">
-            <img src="../assets/log.png" alt="Logo">
-          </a>
-          <h2 *ngIf="currentUser" class="white-text">
-            Bonjour {{currentUser.username}}
-          </h2>
-        </div>
-      </li>
+  <div class="my-navbar">
+    <div class="navbar-header">
+      <div class="row">
+        <a class="navbar-brand" href="./quick " style="padding: 0;">
+          <img src="../assets/log.png" alt="Logo">
+        </a>
+      </div>
+      <div class="row">
+        <h2 *ngIf="currentUser" class="white-text">
+          Bonjour {{currentUser.username}}
+        </h2>
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
       <li>
         <a class="btn" href="./quick ">Carte
           <span class="glyphicon glyphicon-map-marker"></span>
