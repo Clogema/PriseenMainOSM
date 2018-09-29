@@ -107,7 +107,7 @@ export class EditorialComponent implements OnInit {
         this.file = {
           filename: file.name,
           filetype: file.type,
-          value: reader.result.split(",")[1]
+          value: reader.result.toString().split(",")[1]
         };
       };
     }
