@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 
 import { AuthenticationService } from "../_services/index";
+import { switchMap } from "rxjs/operators";
 
 @Component({
   moduleId: "app-login",
@@ -12,15 +13,24 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   error = "";
+  errMsg = "";
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     // reset login status
     // this.authenticationService.logout();
+    this.route.params.subscribe(
+      (e) => {
+        if (e.msg){
+          this.errMsg = e.msg;
+        }
+      }
+    );
   }
 
   login() {

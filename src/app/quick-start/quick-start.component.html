@@ -1,47 +1,10 @@
 <div class="row container-fluid">
-  <div *ngIf="!printTestimony && !printCrassier" class="col-sm-2"></div>
-
-  <div *ngIf="printTestimony" class="col-sm-2">
-    <div class="panel panel-default">
-      <div class="panel-heading">{{ obj.title }}
-        <div class="pull-right">
-          <button type="button" class="btn btn-xs" (click)="printTestimony = false">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
-        </div>
-      </div>
-      <div class="panel-body">{{ obj.description }}
-        <br>
-        <br>
-        <div class=pull-right>{{ (obj.username ? obj.username : "Anonyme") }},
-          <i>{{ obj.annee.slice(0, -9) }}</i>
-        </div>
-        <img src="../assets/log.png" alt="Logo">
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="printCrassier || printCSDU" class="col-sm-2">
-    <div class="panel panel-default">
-      <div class="panel-heading">{{ obj.nom }}
-        <div class="pull-right">
-          <button type="button" class="btn btn-xs" (click)="printCrassier = false">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
-        </div>
-      </div>
-      <div class="panel-body">{{ obj.description }}
-        <br>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-8">
+  <div class="col-sm-12 col-lg-10">
     <div id="frugalmap">
     </div>
   </div>
 
-  <div id="legend" class="col-sm-2">
+  <div id="legend" class="col-sm-12 col-lg-2">
     <button data-target="#testimony" *ngIf="testimonyOnMap" class="btn btn-org btn-block btn-lg" data-toggle="collapse">Témoignages
       <span class="caret"></span>
     </button>
@@ -58,7 +21,7 @@
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
               <ng-container *ngFor="let test of testimonies">
-                <li class="list-group-item" *ngIf="test.annee.substring(0,4) == '2018'" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngIf="test.annee.substring(0,4) == '2018'" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>
@@ -75,7 +38,7 @@
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
               <ng-container *ngFor="let test of testimonies">
-                <li class="list-group-item" *ngIf="test.annee.substring(0,4) == 2017" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngIf="test.annee.substring(0,4) == 2017" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>
@@ -92,7 +55,7 @@
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
               <ng-container *ngFor="let test of testimonies">
-                <li class="list-group-item" *ngIf="test.annee.substring(0,4) <= 2016" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngIf="test.annee.substring(0,4) <= 2016" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>
@@ -108,8 +71,8 @@
     </button>
     <div id="crassier" *ngIf="crassiersOnMap" class="collapse in pre-scrollable">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let crassier of crassiers" (click)="centerOnCrassiers(crassier)">{{ crassier.nom }}</li>
-        <li class="list-group-item" *ngFor="let c of csdu" (click)="centerOnCsdu(c)">{{ c.nom }}</li>
+        <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngFor="let crassier of crassiers" (click)="centerOnCrassiers(crassier)">{{ crassier.nom }}</li>
+        <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngFor="let c of csdu" (click)="centerOnCsdu(c)">{{ c.nom }}</li>
       </ul>
     </div>
     <br *ngIf="crassiersOnMap">
@@ -126,4 +89,41 @@
     </div>
   </div>
   <div class="col-sm-1 "></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="testimony-modal" tabindex="-1" role="dialog" aria-labelledby="testimony-title">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="testimony-title">{{ obj?.title ? obj?.title : obj?.nom }}</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="printTestimony" class="container-fluid">
+          <div class="row">
+            {{ obj.description }}
+          </div>
+
+          <hr/>
+
+          <div class="row">
+            <div class="pull-right" style="display: flex; flex-direction: column; align-items: flex-end;">{{ (obj.username ? obj.username : "Anonyme") }},
+              <i>{{ obj.annee.slice(0, -9) }}</i>
+              <img class="logo" src="../assets/log.png" alt="Logo">
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="printCrassier || printCSDU">
+          {{ obj.description }}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

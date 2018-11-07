@@ -35,7 +35,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (request.url.match("editorial/get.php")) {
             return next.handle(request);
         }
-
+        
         request = request.clone({
             setHeaders: {
                 Authorization: "Bearer " + this.auth.token,
@@ -44,13 +44,13 @@ export class TokenInterceptor implements HttpInterceptor {
         });
 
         return next.handle(request).do((e:HttpEvent<any>) => {
-            if (event instanceof HttpResponse){
-                console.log(event);
+            if (e instanceof HttpResponse){
+                console.log(e);
             }
         }, (err: any) => {
             if (err.status == 401){
                 // Token expired
-                this.router.navigate(["/login"]);
+                this.router.navigate(["/login",{"msg" : "La session a expiré"}]);
             }
         });
     }

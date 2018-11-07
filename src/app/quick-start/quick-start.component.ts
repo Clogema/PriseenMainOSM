@@ -184,7 +184,7 @@ export class QuickStartComponent implements OnInit {
     this.printCrassier = false;
     this.obj = obj;
     this.myMap.setView(new L.LatLng(obj.longitude, obj.latitude), 15);
-    const date = new Date();
+    console.log(obj);
   }
 
   public centerOnCrassiers(obj: any) {
@@ -192,6 +192,7 @@ export class QuickStartComponent implements OnInit {
     this.printCrassier = true;
     this.obj = obj;
     this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 13);
+    console.log(obj);
   }
 
   public centerOnCsdu(obj: any) {
@@ -199,6 +200,7 @@ export class QuickStartComponent implements OnInit {
     this.printCrassier = true;
     this.obj = obj;
     this.myMap.setView(new L.LatLng(obj.pos[0], obj.pos[1]), 13);
+    console.log(obj);
   }
 
   public getConduite() {

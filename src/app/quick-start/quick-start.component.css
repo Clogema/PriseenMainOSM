@@ -31,3 +31,21 @@ li {
   background-color: #ff4900;
   color: white;
 }
+
+.logo{
+  box-shadow: 0 0 5px black;
+}
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 1100px){
+  #frugalmap{ 
+    margin-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  #frugalmap{ 
+    height: 400px !important;
+  }
+}

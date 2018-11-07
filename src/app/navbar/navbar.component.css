@@ -89,3 +89,26 @@ a:hover {
   background-color: #ff4900;
   color: white;
 }
+
+.nav > li {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+@media only screen and (max-width: 800px){
+  .navbar-header > .row {
+    margin-left: 0 !important;
+  }
+  
+  .navbar-right{
+    margin: auto;
+    margin-right: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .nav > li {
+    border-top: 1px solid grey;
+    border-bottom: none;
+  }
+}
