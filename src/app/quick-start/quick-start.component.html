@@ -14,14 +14,14 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-              2018</a>
+              {{ this.currentYear }}</a>
           </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in">
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
-              <ng-container *ngFor="let test of testimonies">
-                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngIf="test.annee.substring(0,4) == '2018'" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              <ng-container *ngFor="let test of getTestimoniesFrom(currentYear)">
+                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>
@@ -31,14 +31,14 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-              2017</a>
+              {{ this.currentYear-1 }}</a>
           </h4>
         </div>
         <div id="collapse2" class="panel-collapse collapse">
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
-              <ng-container *ngFor="let test of testimonies">
-                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngIf="test.annee.substring(0,4) == 2017" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              <ng-container *ngFor="let test of getTestimoniesFrom(currentYear-1)">
+                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>
@@ -48,14 +48,14 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-              2016 et antérieur</a>
+              {{ this.currentYear-2 }} et antérieur</a>
           </h4>
         </div>
         <div id="collapse3" class="panel-collapse collapse">
           <div id="testimony" *ngIf="testimonyOnMap" class="collapse in pre-scrollable panel-body">
             <ul class="list-group">
-              <ng-container *ngFor="let test of testimonies">
-                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" *ngIf="test.annee.substring(0,4) <= 2016" (click)="centerOnTestimony(test)">{{ test.title }}</li>
+              <ng-container *ngFor="let test of getTestimoniesFrom(currentYear-2)">
+                <li class="list-group-item" data-toggle="modal" data-target="#testimony-modal" (click)="centerOnTestimony(test)">{{ test.title }}</li>
               </ng-container>
             </ul>
           </div>

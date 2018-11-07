@@ -33,10 +33,15 @@ export class QuickStartComponent implements OnInit {
   testimony: any;
   testimonies: any[];
 
+  currentYear: number;
+
   constructor(private http: HttpClient, private editorial: EditorialService) {}
 
   ngOnInit() {
     console.log(environment);
+    
+    this.currentYear = new Date().getFullYear();
+    
     this.printTestimony = false;
     this.testimonyLayer = L.layerGroup();
     this.crassiersLayer = L.layerGroup();
@@ -89,9 +94,14 @@ export class QuickStartComponent implements OnInit {
     this.myMap.on("overlayremove", e => {
       this.onOverlayRemove(e);
     });
-    // this.myMap.on("click", e => {
-    //   this.printTestimony = false;
-    // });
+  }
+
+  public getTestimoniesFrom(year:number){
+    let yearToCompare = String(year);
+
+    // Regroupe tous les témoignages qui sont antérieur aux deux dernières années
+    if (year <= this.currentYear - 2) return this.testimonies.filter(x => x.annee.substring(0, 4) < yearToCompare);
+    else return this.testimonies.filter(x => x.annee.substring(0,4) === yearToCompare);
   }
 
   public getTestimonies() {
